@@ -6,7 +6,11 @@ class World {
     new Clouds("../img/5_background/layers/4_clouds/2.png"),
   ];
   backgroundObjects = [
-    new BackgroundObject("../img/5_background/layers/3_third_layer/1.png"),
+    new BackgroundObject(
+      "../img/5_background/layers/3_third_layer/1.png",
+      0,
+      100
+    ),
   ];
   ctx;
   canvas;
@@ -21,21 +25,19 @@ class World {
 
     this.addToMap(this.character);
 
-    this.enemies.forEach((enemy) => {
-      this.addToMap(enemy);
-    });
-
-    this.clouds.forEach((cloud) => {
-      this.addToMap(cloud);
-    });
-
-    this.backgroundObjects.forEach((object) => {
-      this.addToMap(object);
-    });
+    this.addObjectsToMap(this.backgroundObjects);
+    this.addObjectsToMap(this.enemies);
+    this.addObjectsToMap(this.clouds);
     // Draw wird immer wieder aufgerufen
     self = this;
     requestAnimationFrame(function () {
       self.draw();
+    });
+  }
+
+  addObjectsToMap(object) {
+    object.forEach((obj) => {
+      this.addToMap(obj);
     });
   }
 

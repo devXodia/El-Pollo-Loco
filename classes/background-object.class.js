@@ -1,9 +1,9 @@
 class BackgroundObject extends moveableObject {
   width = 720;
-  y = 330;
-  x = 0;
-
-  constructor(path) {
+  height = 400;
+  constructor(path, x, y) {
     super().loadImage(path);
+    this.x = x;
+    this.y = y;
   }
 }
