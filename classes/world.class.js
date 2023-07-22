@@ -3,7 +3,7 @@ class World {
   enemies = [new Chicken(), new Chicken(), new Chicken()];
   clouds = [
     new Clouds("../img/5_background/layers/4_clouds/1.png"),
-    new Clouds("../img/5_background/layers/4_clouds/2.png"),
+    // new Clouds("../img/5_background/layers/4_clouds/2.png"),
   ];
   backgroundObjects = [
     new BackgroundObject("../img/5_background/layers/air.png", 0),
@@ -26,7 +26,7 @@ class World {
     this.addObjectsToMap(this.clouds);
     this.addToMap(this.character);
     this.addObjectsToMap(this.enemies);
-    // Draw wird immer wieder aufgerufen
+
     self = this;
     requestAnimationFrame(function () {
       self.draw();

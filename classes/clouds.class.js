@@ -6,5 +6,12 @@ class Clouds extends moveableObject {
 
   constructor(path) {
     super().loadImage(path);
+    this.moveClouds();
+  }
+
+  moveClouds() {
+    setInterval(() => {
+      this.x -= 0.15;
+    }, 1000 / 60);
   }
 }
