@@ -3,15 +3,19 @@ class Clouds extends moveableObject {
   width = 650;
   y = 20;
   x = Math.random() * 500;
-
+  speed = 0.15;
   constructor(path) {
     super().loadImage(path);
     this.moveClouds();
   }
 
   moveClouds() {
+    this.moveLeft();
+  }
+
+  moveLeft() {
     setInterval(() => {
-      this.x -= 0.15;
+      this.x -= this.speed;
     }, 1000 / 60);
   }
 }
