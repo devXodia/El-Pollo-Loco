@@ -12,7 +12,6 @@ function init() {
 window.addEventListener("keydown", (event) => {
   if (event.keyCode == "39") {
     keyboard.RIGHT = true;
-    console.log(keyboard.RIGHT);
   }
   if (event.keyCode == "37") {
     keyboard.LEFT = true;
