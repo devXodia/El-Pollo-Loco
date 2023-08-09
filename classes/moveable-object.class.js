@@ -59,6 +59,6 @@ class moveableObject {
   }
 
   jump() {
-    this.speedY = 20;
+    this.speedY = 22;
   }
 }
