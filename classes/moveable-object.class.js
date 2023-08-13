@@ -51,6 +51,17 @@ class moveableObject {
 
 }
 
+hit(){
+  this.energy -= 5;
+  if(this.energy < 0){
+    this.energy = 0;
+  }
+}
+
+isDead(){
+  return this.energy == 0;
+}
+
   /**
    *
    * @param {Array} arr - [Image Sources]
@@ -84,4 +95,6 @@ class moveableObject {
   jump() {
     this.speedY = 22;
   }
+
+  
 }
