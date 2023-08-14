@@ -1,11 +1,4 @@
-class moveableObject {
-  x = 120;
-  y = 250;
-  height = 175;
-  width = 100;
-  img;
-  imageCache = {};
-  currentImage = 0;
+class moveableObject extends DrawableObject {
   speed = 0.15;
   otherDirection = false;
   speedY = 0;
@@ -24,65 +17,40 @@ class moveableObject {
     return this.y < 250;
   }
 
-  loadImage(path) {
-    this.img = new Image();
-    this.img.src = path;
+  
+
+  isColliding(mo) {
+    return (
+      this.x + this.width > mo.x &&
+      this.y + this.height > mo.y &&
+      this.x < mo.x &&
+      this.y < mo.y + mo.height
+    );
   }
 
-  draw(ctx) {
-    ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+  hit() {
+    this.energy -= 5;
+    if (this.energy < 0) {
+      this.energy = 0;
+    } else {
+      this.lastHit = new Date().getTime();
+    }
   }
 
-  drawFrame(ctx) {
-
-    if(this instanceof Character || this instanceof Chicken){
-    ctx.beginPath();
-    ctx.linewidth = "5";
-    ctx.strokeStyle = "blue";
-    ctx.rect(this.x, this.y, this.width, this.height);
-    ctx.stroke();
-  }
+  isHurt() {
+    let timepassed = new Date().getTime() - this.lastHit; // Difference in ms
+    timepassed = timepassed / 1000; // Difference in s
+    return timepassed < 1;
   }
 
-  isColliding (mo) {
-    return  this.x + this.width > mo.x &&
-    this.y + this.height > mo.y &&
-    this.x < mo.x &&
-    this.y < mo.y + mo.height
-
-}
-
-hit(){
-  this.energy -= 5;
-  if(this.energy < 0){
-    this.energy = 0;
-  } else {
-    this.lastHit = new Date().getTime();
+  isDead() {
+    return this.energy == 0;
   }
-}
-
-isHurt(){
-  let timepassed = new Date().getTime() - this.lastHit; // Difference in ms 
-  timepassed = timepassed / 1000; // Difference in s
-  return timepassed < 1;
-}
-
-isDead(){
-  return this.energy == 0;
-}
 
   /**
    *
    * @param {Array} arr - [Image Sources]
    */
-
-  loadImages(arr) {
-    arr.forEach((path) => {
-      let img = new Image();
-      img.src = path;
-      this.imageCache[path] = img;
-    });
-  }
 
   moveRight() {
     this.x += this.speed;
@@ -104,6 +72,4 @@ isDead(){
   jump() {
     this.speedY = 22;
   }
-
-  
 }
