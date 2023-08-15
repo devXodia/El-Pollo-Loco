@@ -5,11 +5,11 @@ class Coin extends BackgroundObject {
 
   constructor() {
     super().loadImage("../img/8_coin/coin_1.png");
-    this.height = 110;
-    this.width = 110;
+    this.height = 80;
+    this.width = 80;
     this.y = 330 + Math.random() * -100;
     this.x = Coin.nextX;
-    Coin.nextX += 150;
+    Coin.nextX += 250;
     this.loadImages(this.IMAGES_WALKING);
     this.animate();
   }
@@ -21,4 +21,4 @@ class Coin extends BackgroundObject {
   }
 }
 
-Coin.nextX = 200;
+Coin.nextX = 250;
