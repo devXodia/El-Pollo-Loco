@@ -5,6 +5,7 @@ class moveableObject extends DrawableObject {
   acceleration = 2.5;
   energy = 100;
   lastHit = 0;
+  
 
   applyGravity() {
     setInterval(() => {
@@ -47,6 +48,7 @@ class moveableObject extends DrawableObject {
     return this.energy == 0;
   }
 
+  
   /**
    *
    * @param {Array} arr - [Image Sources]

@@ -1,4 +1,6 @@
 class Moneybar extends Statusbar {
+    coin = 0;
+    coin_sound = new Audio("audio/coin.mp3");
 
     IMAGES_MONEY = [
         "img/7_statusbars/1_statusbar/1_statusbar_coin/blue/0.png",
@@ -11,8 +13,19 @@ class Moneybar extends Statusbar {
 
     constructor(){
         super();
+        this.loadImages(this.IMAGES_MONEY);
         this.IMAGES = this.IMAGES_MONEY;
-        this.x = 60;
+        this.setPercentage(0);
+        this.y = 40;
 
     }
+
+    addMoney(){
+        this.coin += 10;
+        if(this.coin > 100){
+            this.coin = 100;
+        }
+      }
+    
+    
 }

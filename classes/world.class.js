@@ -15,6 +15,7 @@ class World {
     this.draw();
     this.setWorld();
     this.checkCollisions();
+    this.getCoin();
   }
 
   setWorld() {
@@ -27,7 +28,19 @@ class World {
         if(this.character.isColliding(enemy)){
           this.character.hit();
           this.statusBar.setPercentage(this.character.energy);
-        }
+        } 
+      } );
+    }, 200);
+  }
+
+  getCoin(){
+    setInterval(() => {
+      this.level.coins.forEach( (coin) => {
+        if(this.character.isColliding(coin)){
+          this.moneyBar.addMoney();
+          this.moneyBar.coin_sound.play();
+          this.moneyBar.setPercentage(this.moneyBar.coin);
+        } 
       } );
     }, 200);
   }
@@ -36,6 +49,7 @@ class World {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.ctx.translate(this.camera_x, 0);
     this.addObjectsToMap(this.level.backgroundObjects);
+    this.addObjectsToMap(this.level.clouds);
     
     this.ctx.translate(-this.camera_x, 0);
     this.addToMap(this.statusBar);
@@ -43,7 +57,7 @@ class World {
     this.ctx.translate(this.camera_x, 0);
 
     this.addToMap(this.character);
-    this.addObjectsToMap(this.level.clouds);
+    
     this.addObjectsToMap(this.level.coins);
     this.addObjectsToMap(this.level.enemies);
     
