@@ -21,7 +21,7 @@ class Moneybar extends Statusbar {
     }
 
     addMoney(){
-        this.coin += 10;
+        this.coin += 11.11;
         if(this.coin > 100){
             this.coin = 100;
         }

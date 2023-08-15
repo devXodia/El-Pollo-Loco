@@ -7,6 +7,7 @@ class World {
   camera_x = -0;
   statusBar = new Statusbar();
   moneyBar = new Moneybar();
+  bottleBar = new Bottlebar();
 
   constructor(canvas) {
     this.ctx = canvas.getContext("2d");
@@ -55,6 +56,7 @@ class World {
     this.ctx.translate(-this.camera_x, 0);
     this.addToMap(this.statusBar);
     this.addToMap(this.moneyBar);
+    this.addToMap(this.bottleBar);
     this.ctx.translate(this.camera_x, 0);
 
     this.addToMap(this.character);
