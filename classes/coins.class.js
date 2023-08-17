@@ -21,4 +21,4 @@ class Coin extends BackgroundObject {
   }
 }
 
-Coin.nextX = 200;
+Coin.nextX = 250;
