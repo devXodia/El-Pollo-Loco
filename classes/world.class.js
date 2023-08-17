@@ -18,6 +18,7 @@ class World {
     this.setWorld();
     this.run();
     this.getCoin();
+    this.getBottle();
   }
 
   setWorld() {
@@ -44,6 +45,18 @@ class World {
     }, 200);
   }
 
+  getBottle(){
+    setInterval(() => {
+      this.level.bottles.forEach( (bottle) => {
+        if(this.character.isColliding(bottle)){
+          this.bottleBar.addBottle();
+          this.bottleBar.setPercentage(this.bottleBar.bottle);
+          this.level.bottles.splice(0, 1);
+        }
+      } );
+    }, 200);
+  }
+
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.ctx.translate(this.camera_x, 0);
@@ -57,7 +70,9 @@ class World {
     this.ctx.translate(this.camera_x, 0);
 
     this.addToMap(this.character);
+    
     this.addObjectsToMap(this.ThrowableObjects);
+    this.addObjectsToMap(this.level.bottles);
     this.addObjectsToMap(this.level.coins);
     this.addObjectsToMap(this.level.enemies);
     
@@ -115,9 +130,12 @@ class World {
 
 
   checkThrowObjects() {
-    if(this.keyboard.D){
+    if(this.keyboard.D && this.bottleBar.bottle >= 0){
       let bottle = new ThrowableObject(this.character.x, this.character.y);
       this.ThrowableObjects.push(bottle);
+      this.bottleBar.bottle -= 10;
+      this.bottleBar.percentage -= 10;
+      this.bottleBar.setPercentage(this.bottleBar.percentage);
     }
   }
 }

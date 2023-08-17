@@ -1,10 +1,10 @@
 class Coin extends BackgroundObject {
-  IMAGES_COINS = ["../img/8_coin/coin_1.png", "../img/8_coin/coin_2.png"];
+  IMAGES_COINS = ["/img/8_coin/coin_1.png", "/img/8_coin/coin_2.png"];
 
   x = 200;
 
   constructor() {
-    super().loadImage("../img/8_coin/coin_1.png");
+    super().loadImage("/img/8_coin/coin_1.png");
     this.height = 80;
     this.width = 80;
     this.y = 330 + Math.random() * -100;

@@ -19,4 +19,8 @@ class Bottlebar extends Statusbar{
         this.y = 90;
     }
 
+    addBottle(){
+        this.bottle += 11.11;
+        
+      }
 }
