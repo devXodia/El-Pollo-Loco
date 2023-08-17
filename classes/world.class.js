@@ -38,7 +38,8 @@ class World {
           this.moneyBar.addMoney();
           this.moneyBar.coin_sound.play();
           this.moneyBar.setPercentage(this.moneyBar.coin);
-        } 
+          this.level.coins.splice(0, 1);
+        }
       } );
     }, 200);
   }
@@ -111,6 +112,7 @@ class World {
     }
   });
   }
+
 
   checkThrowObjects() {
     if(this.keyboard.D){
