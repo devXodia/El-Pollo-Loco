@@ -132,13 +132,14 @@ class World {
 
 
   checkThrowObjects() {
-    if(this.keyboard.D && this.bottleBar.bottle >= 0){
+    if(this.keyboard.D && this.bottleBar.bottle > 0){
       let bottle = new ThrowableObject(this.character.x, this.character.y);
       this.ThrowableObjects.push(bottle);
       this.bottleBar.bottle -= 10;
-      this.bottleBar.percentage -= 10;
+      this.bottleBar.percentage -= 8;
       this.bottleBar.setPercentage(this.bottleBar.percentage);
-    }
+      
+    } 
   }
 
   
