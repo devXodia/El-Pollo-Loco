@@ -36,7 +36,8 @@ class Chicken extends moveableObject {
       if(this.hp === 100){
       this.playAnimation(this.IMAGES_WALKING);
     } else if(this.hp < 100){
-      this.playAnimation(this.IMAGE_DEAD);
+      this.loadImage(this.IMAGE_DEAD);
+      this.IMAGE_DEAD.splice(0, 1);
       
     }
   }, 200);

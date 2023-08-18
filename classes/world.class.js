@@ -118,7 +118,7 @@ class World {
   }
 
 
-  checkCollisions(){
+  async checkCollisions(){
     this.level.enemies.forEach( (enemy) => {
       if(this.character.isColliding(enemy) && enemy.hp == 100){
         this.character.hit();
@@ -126,7 +126,6 @@ class World {
         this.statusBar.setPercentage(this.character.energy);
     } else if (this.character.jumpCollision(enemy)){
         enemy.hp -= 100;
-        
       } 
   }); 
   }
