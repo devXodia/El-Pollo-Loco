@@ -20,7 +20,7 @@ class Bottlebar extends Statusbar{
     }
 
     addBottle(){
-        this.bottle += 11.11;
+        this.bottle += 10;
         
       }
 }

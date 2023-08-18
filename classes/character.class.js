@@ -43,6 +43,7 @@ class Character extends moveableObject {
   walking_sound = new Audio("/audio/walking.mp3");
   hurt_sound = new Audio("audio/hurt.mp3");
   y = 120;
+  
   constructor() {
     super().loadImage("img/2_character_pepe/2_walk/W-21.png");
     this.loadImages(this.IMAGES_WALKING);
@@ -97,5 +98,9 @@ class Character extends moveableObject {
 
   }
 
+  jumpCollision(enemy){
+    return  (this.x + this.width > enemy.x &&
+      this.x < enemy.x);
+  }
 
 }

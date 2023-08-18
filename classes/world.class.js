@@ -120,12 +120,15 @@ class World {
 
   checkCollisions(){
     this.level.enemies.forEach( (enemy) => {
-      if(this.character.isColliding(enemy)){
+      if(this.character.isColliding(enemy) && enemy.hp == 100){
         this.character.hit();
         this.character.hurt_sound.play();
         this.statusBar.setPercentage(this.character.energy);
-    }
-  });
+    } else if (this.character.jumpCollision(enemy)){
+        enemy.hp -= 100;
+        
+      } 
+  }); 
   }
 
 
@@ -138,4 +141,6 @@ class World {
       this.bottleBar.setPercentage(this.bottleBar.percentage);
     }
   }
+
+  
 }
