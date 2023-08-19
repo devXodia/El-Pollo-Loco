@@ -28,7 +28,8 @@ class World {
   run(){
     setInterval(() => {
       this.checkCollisions();
-      this.checkThrowObjects();         
+      this.checkThrowObjects();
+      this.bottleCollison();
     }, 200);
   }
 
@@ -142,5 +143,17 @@ class World {
     } 
   }
 
+
+  bottleCollison(){
+      for (let i = this.ThrowableObjects.length - 1; i >= 0; i--) {
+          const bottle = this.ThrowableObjects[i];
+          for (const chicken of this.level.enemies) {
+              if (bottle.isColliding(chicken)) {
+                  this.ThrowableObjects.splice(i, 1);
+                  chicken.hp -= 100;
+              }
+          }
+        }
+  }
   
 }

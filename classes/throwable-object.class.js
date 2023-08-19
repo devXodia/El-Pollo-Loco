@@ -16,4 +16,6 @@ class ThrowableObject extends moveableObject {
             this.x += 10;
         }, 25);
     }
+
+   
 }
