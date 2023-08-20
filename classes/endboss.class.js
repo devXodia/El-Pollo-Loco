@@ -49,13 +49,13 @@ class Endboss extends moveableObject {
   animate() {
     let bossAnimation = setInterval(() => {
       this.loadImage(this.IMAGES_WALKING[1]);
-      if(this.hp < 100){
+      if(this.bossIsHurt()){
       this.playAnimation(this.IMAGES_HURT);
       this.bossMove();
       }
-     if(this.hp < 0){
+     if(this.bossIsDead()){
         this.hp = 0;
-        this.bossStop();
+        this.bossStopMoving();
         clearInterval(bossAnimation);
         this.playAnimation(this.IMAGES_DEAD);
         this.loadImage(this.IMAGES_DEAD[2]);
@@ -65,7 +65,7 @@ class Endboss extends moveableObject {
 
   
 
-  bossStop(){
+  bossStopMoving(){
       this.x = this.currentX;
 
     
@@ -77,5 +77,11 @@ class Endboss extends moveableObject {
     this.currentX = this.x;
   }
 
+ bossIsHurt(){
+ return this.hp < 100;
+ }
  
+ bossIsDead(){
+ return this.hp <= 0;
+ }
 }
