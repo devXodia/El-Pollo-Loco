@@ -119,13 +119,15 @@ class World {
 
   async checkCollisions() {
     this.level.enemies.forEach((enemy) => {
-      if (this.character.isColliding(enemy) && enemy.hp == 100) {
-        this.character.hit();
-        this.character.hurt_sound.play();
-        this.statusBar.setPercentage(this.character.energy);
-      } else if (this.character.jumpCollision(enemy)) {
-        enemy.hp -= 100;
-      }
+      this.level.boss.forEach((boss) => {
+        if (this.character.isColliding(enemy) && enemy.hp == 100) {
+          this.character.updateCharacterHealth();
+        } else if (this.character.jumpCollision(enemy)) {
+          enemy.hp -= 100;
+        } else if (this.character.isColliding(boss)) {
+          this.character.updateCharacterHealth();
+        }
+      });
     });
   }
 
@@ -145,9 +147,18 @@ class World {
         this.level.boss.forEach((boss) => {
           if (bottle.isColliding(enemy)) {
             enemy.hp -= 100;
-          } else if (bottle.isColliding(boss)) {
-            boss.hp -= 25;
+            bottle.stopIntervals();
+            bottle.loadImage(bottle.IMAGES_SPLASH[3]);
+            bottle.x = enemy.x + (enemy.width - bottle.width) / 2;
+            bottle.y = enemy.y + (enemy.height - bottle.height) / 2;
+            
+            this.ThrowableObjects.find((bottle) => this.ThrowableObjects.splice(bottle, 1));
+            } else if (bottle.isColliding(boss)) {
+            boss.hp -= 4;
             console.log(boss.hp);
+            if (boss.hp < 50) {
+              boss.speed = 20;
+            }
           }
         });
       });

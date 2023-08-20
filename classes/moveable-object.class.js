@@ -81,5 +81,9 @@ class moveableObject extends DrawableObject {
     this.speedY = 22;
   }
 
-  
+  updateCharacterHealth(){
+    this.hit();
+    this.hurt_sound.play();
+    this.world.statusBar.setPercentage(this.energy);
+  }
 }
