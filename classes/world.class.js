@@ -30,6 +30,7 @@ class World {
       this.checkCollisions();
       this.checkThrowObjects();
       this.bottleCollison();
+      console.log(this.character.x)
     }, 200);
   }
 
@@ -123,7 +124,7 @@ class World {
         if (this.character.isColliding(enemy) && enemy.hp == 100) {
           this.character.updateCharacterHealth();
         } else if (this.character.jumpCollision(enemy)) {
-          enemy.hp -= 100;
+          enemy.chickenHit()
         } else if (this.character.isColliding(boss)) {
           this.character.updateCharacterHealth();
         }
