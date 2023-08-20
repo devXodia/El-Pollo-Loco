@@ -44,7 +44,9 @@ class Chicken extends moveableObject {
   }, 200);
   }
 
-
+  chickenHit(){
+    this.hp -= 100;
+  }
 }
 
 Chicken.nextX = 550;

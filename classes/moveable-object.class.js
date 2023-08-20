@@ -86,4 +86,6 @@ class moveableObject extends DrawableObject {
     this.hurt_sound.play();
     this.world.statusBar.setPercentage(this.energy);
   }
+
+  
 }

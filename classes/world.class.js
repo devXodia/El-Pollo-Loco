@@ -146,16 +146,14 @@ class World {
       this.level.enemies.forEach((enemy) => {
         this.level.boss.forEach((boss) => {
           if (bottle.isColliding(enemy)) {
-            enemy.hp -= 100;
             bottle.stopIntervals();
-            bottle.loadImage(bottle.IMAGES_SPLASH[3]);
-            bottle.x = enemy.x + (enemy.width - bottle.width) / 2;
-            bottle.y = enemy.y + (enemy.height - bottle.height) / 2;
-            
-            this.ThrowableObjects.find((bottle) => this.ThrowableObjects.splice(bottle, 1));
-            } else if (bottle.isColliding(boss)) {
+            bottle.bottlePlayAnimation(bottle.IMAGES_SPLASH, 100, () => {
+              enemy.hp -= 100;
+              bottle.positionBottleOnEnemy(bottle, enemy);
+              bottle.killBottle();
+            });
+          } else if (bottle.isColliding(boss)) {
             boss.hp -= 4;
-            console.log(boss.hp);
             if (boss.hp < 50) {
               boss.speed = 20;
             }
