@@ -148,9 +148,7 @@ class World {
           if (bottle.isColliding(enemy)) {
             bottle.stopIntervals();
             bottle.bottlePlayAnimation(bottle.IMAGES_SPLASH, 100, () => {
-              enemy.hp -= 100;
-              bottle.positionBottleOnEnemy(bottle, enemy);
-              bottle.killBottle();
+              bottle.bottleKillsChicken(enemy, bottle);
             });
           } else if (bottle.isColliding(boss)) {
             boss.hp -= 4;

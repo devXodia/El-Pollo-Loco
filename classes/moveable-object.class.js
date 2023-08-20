@@ -5,7 +5,6 @@ class moveableObject extends DrawableObject {
   acceleration = 2.5;
   energy = 100;
   lastHit = 0;
-  
 
   applyGravity() {
     setInterval(() => {
@@ -15,14 +14,13 @@ class moveableObject extends DrawableObject {
   }
 
   isAboveGround() {
-    if(this instanceof ThrowableObject){ // Throwable Object should always fall
+    if (this instanceof ThrowableObject) {
+      // Throwable Object should always fall
       return true;
     } else {
-    return this.y < 250;
+      return this.y < 250;
     }
   }
-
-  
 
   isColliding(mo) {
     return (
@@ -32,8 +30,6 @@ class moveableObject extends DrawableObject {
       this.y < mo.y + mo.height
     );
   }
-
-  
 
   hit() {
     this.energy -= 5;
@@ -54,7 +50,6 @@ class moveableObject extends DrawableObject {
     return this.energy == 0;
   }
 
-  
   /**
    *
    * @param {Array} arr - [Image Sources]
@@ -81,11 +76,15 @@ class moveableObject extends DrawableObject {
     this.speedY = 22;
   }
 
-  updateCharacterHealth(){
+  updateCharacterHealth() {
     this.hit();
     this.hurt_sound.play();
     this.world.statusBar.setPercentage(this.energy);
   }
 
-  
+  bottleKillsChicken(enemy, bottle) {
+    enemy.chickenHit();
+    bottle.positionBottleOnEnemy(bottle, enemy);
+    bottle.killBottle();
+  }
 }
