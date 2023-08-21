@@ -1,4 +1,7 @@
-let level1 = new Level(
+let level1;
+
+function startLevel(){
+  level1 = new Level(
     [
       new Chicken(),
       new Chicken(),
@@ -96,4 +99,5 @@ let level1 = new Level(
       new Bottle(),
     ]
   );
+}
   

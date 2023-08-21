@@ -9,12 +9,13 @@ let hurt_sound = new Audio("audio/hurt.mp3");
 let coin_sound = new Audio("audio/coin.mp3");
 
 function gameStart() {
+  startLevel();
   initWorld();
+
   removeStartScreen();
   moveButtons();
   playMusic();
 }
-
 
 window.addEventListener("keydown", (event) => {
   if (event.keyCode == "39") {
@@ -70,8 +71,10 @@ function enterFullscreen(element) {
   }
 }
 
-function goFullscreen(){
-  let container = document.getElementById('game_container');
+function goFullscreen() {
+  let container = document.getElementById("game_container");
+  document.getElementById("close_fullscreen").display = "flex";
+  document.getElementById("open_fullscreen").display = "none";
   enterFullscreen(canvas);
 }
 
@@ -81,6 +84,8 @@ function exitFullscreen() {
   } else if (document.webkitExitFullscreen) {
     document.webkitExitFullscreen();
   }
+  document.getElementById("close_fullscreen").display = "none";
+  document.getElementById("open_fullscreen").display = "flex";
 }
 
 function playMusic() {
@@ -88,25 +93,28 @@ function playMusic() {
   music.play();
 }
 
-function playAudio(){
-  let play_audio = document.getElementById('play_audio').style.display = "none";
-  let mute_audio = document.getElementById('mute_audio').style.display = "flex";
+function playAudio() {
+  let play_audio = (document.getElementById("play_audio").style.display =
+    "none");
+  let mute_audio = (document.getElementById("mute_audio").style.display =
+    "flex");
   audio_muted = false;
   playMusic();
-  
 }
 
 function muteAudio() {
-  let mute_audio = document.getElementById('mute_audio').style.display = "none";
-  let play_audio = document.getElementById('play_audio').style.display = "flex";
+  let mute_audio = (document.getElementById("mute_audio").style.display =
+    "none");
+  let play_audio = (document.getElementById("play_audio").style.display =
+    "flex");
   audio_muted = true;
   music.pause();
   hurt_sound.pause();
   walking_sound.pause();
 }
 
-function moveButtons(){
-  document.getElementById('ingame_container').style = "right: 0";
+function moveButtons() {
+  document.getElementById("ingame_container").style = "right: 0";
 }
 
 function removeStartScreen() {
