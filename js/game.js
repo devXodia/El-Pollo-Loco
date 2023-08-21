@@ -7,6 +7,7 @@ let music = new Audio("audio/bg_music.mp3");
 let walking_sound = new Audio("/audio/walking.mp3");
 let hurt_sound = new Audio("audio/hurt.mp3");
 let coin_sound = new Audio("audio/coin.mp3");
+let negative_sound = new Audio("audio/negative.mp3");
 
 function gameStart() {
   startLevel();

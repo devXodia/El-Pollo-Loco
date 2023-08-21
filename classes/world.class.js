@@ -141,7 +141,9 @@ class World {
       this.bottleBar.bottle -= 10;
       this.bottleBar.percentage -= 8;
       this.bottleBar.setPercentage(this.bottleBar.percentage);
-    }
+    } else if(this.keyboard.D && !audio_muted && this.bottlesNotAvailable()){
+      negative_sound.play();
+  }
   }
 
   bottleCollison() {
@@ -171,11 +173,16 @@ class World {
         this.bottleBar.addBottle();   
         this.moneyBar.setPercentage(this.moneyBar.coin);; 
         this.bottleBar.setPercentage(this.bottleBar.bottle); 
-        console.log("bottles", world.bottleBar.bottle);
-        console.log("coins", world.moneyBar.coin)
+        
+      } else if(this.keyboard.B && this.moneyBar.coin <= 0 || this.keyboard.B && this.bottleBar.bottle >= 100){
+        if(!audio_muted){
+          negative_sound.play();
+        }
       }
     }
    
-    
+   bottlesNotAvailable(){
+    return this.keyboard.D && this.bottleBar.bottle <= 0;
+   }
   }
 
