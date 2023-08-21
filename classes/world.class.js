@@ -40,11 +40,10 @@ class World {
         if (this.character.isColliding(coin)) {
           this.moneyBar.addMoney();
           if(!audio_muted){
-            coin.sound.play();
-          } else {
+            coin_sound.play();
+          }
           this.moneyBar.setPercentage(this.moneyBar.coin);
           this.level.coins.splice(0, 1);
-        }
         }
       });
     }, 200);

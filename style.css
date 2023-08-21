@@ -74,6 +74,7 @@ canvas {
   display: flex;
   width: 720px;
   gap: 42px;
+  justify-content: center;
 }
 
 .throw_container img {
@@ -95,13 +96,26 @@ canvas {
   font-size: 22px;
 }
 
+.show_audio_container {
+  display: none;
+}
 
-.show_audio_container{
+.mute_img,
+.play_img,
+.fullscreen_img,
+.fullscreen_close_img {
+  cursor: pointer;
+}
+
+.fullscreen_close_container {
   display: none !important;
 }
 
-.fullscreen_close_container{
-  display: none !important;
+.ingame_container {
+  display: flex;
+  position: absolute;
+  top: 0;
+  z-index: 3;
 }
 
 @font-face {
