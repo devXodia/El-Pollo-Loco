@@ -1,9 +1,9 @@
 body {
   margin: 0;
-  font-family: 'zabars', Arial, Helvetica, sans-serif;
+  font-family: "zabars", Arial, Helvetica, sans-serif !important;
 }
 
-.main-screen{
+.main-screen {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,18 +14,62 @@ body {
   height: 100vh;
 }
 
-.main-screen h1{
+.main-screen h1 {
   font-size: 64px;
   letter-spacing: 3px;
-  text-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+  text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
 }
 
 canvas {
   background-color: black;
-  
+}
+
+.game_container {
+  position: relative;
+}
+
+.start_screen {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  position: absolute;
+  top: 0;
+}
+
+.start_screen img {
+  z-index: 2;
+  width: 720px;
+  height: 480px;
+}
+
+.start_game_btn {
+  position: absolute;
+  z-index: 2;
+  margin-bottom: 20px;
+  font-size: 32px;
+  border-style: unset;
+  padding: 10px;
+  transition: 0.2s transform ease-in-out;
+  will-change: transform;
+  background-color: #e68956;
+  font-family: "zabars", Arial, Helvetica, sans-serif !important;
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0);
+  outline: 1px solid;
+  outline-offset: 0px;
+  transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
+  letter-spacing: 3px;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+.start_game_btn:hover {
+  cursor: pointer;
+  box-shadow: inset 0 0 20px rgba(215, 115, 8, 0.5),
+    0 0 20px rgba(255, 255, 255, 0.2);
+  outline-color: rgba(255, 255, 255, 0);
+  outline-offset: 15px;
 }
 
 @font-face {
-  font-family: 'zabars';
-  src: url('fonts/zabars.ttf') format('truetype');
-}  
+  font-family: "zabars";
+  src: url("fonts/zabars.ttf") format("truetype");
+}

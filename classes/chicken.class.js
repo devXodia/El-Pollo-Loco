@@ -30,7 +30,6 @@ class Chicken extends moveableObject {
       this.moveLeft();
       this.otherDirection = false;
     } else if(this.hp < 100){
-      
   }}, 1000 / 60);
     
     setInterval(() => { 
