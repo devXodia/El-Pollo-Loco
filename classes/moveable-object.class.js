@@ -78,7 +78,7 @@ class moveableObject extends DrawableObject {
 
   updateCharacterHealth() {
     this.hit();
-    this.hurt_sound.play();
+    hurt_sound.play();
     this.world.statusBar.setPercentage(this.energy);
   }
 

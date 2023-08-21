@@ -27,13 +27,66 @@
     <script src="./js/game.js"></script>
   </head>
   <body>
-    <div class="main-screen">
+    <div class="main-screen" id="main">
       <h1>El Pollo Loco</h1>
       <div class="game_container">
         <canvas id="canvas" width="720" height="480"></canvas>
         <div class="start_screen" id="start_screen">
           <img src="img/9_intro_outro_screens/start/startscreen_1.png" />
-          <button class="start_game_btn" onclick="gameStart();">START GAME</button>
+          <button class="start_game_btn" onclick="gameStart();">
+            START GAME
+          </button>
+        </div>
+      </div>
+      <div class="controls_container">
+        <div class="walk_container">
+          <div class="walk">
+            <img src="img/controls/arrow_left.png" />
+            <img src="img/controls/arrow_right.png" />
+          </div>
+          <span>WALK L/R</span>
+        </div>
+        <div class="jump_container">
+          <div class="jump">
+            <img src="img/controls/spacebar.png" />
+          </div>
+          <span>JUMP</span>
+        </div>
+        <div class="throw_container">
+          <div class="throw">
+            <img src="img/controls/d_icon.png" />
+          </div>
+          <span>Throw Bottle</span>
+        </div>
+        <div class="buy_container">
+          <div class="buy">
+            <img src="img/controls/b_icon.png" />
+          </div>
+          <span>Buy Bottle</span>
+        </div>
+        <div class="mute_audio_container">
+          <div class="mute">
+            <img src="img/controls/mute_audio.png" onclick="muteAudio();" />
+          </div>
+          <span>Mute Audio</span>
+        </div>
+        <div class="show_audio_container">
+          <div class="play">
+            <img src="img/controls/show_audio.png" />
+          </div>
+          <span>Play Audio</span>
+        </div>
+        <div class="fullscreen_open_container">
+          <div class="fullscreen">
+            <img src="img/controls/fullscreen_show.png" />
+          </div>
+          <span>Fullscreen</span>
+        </div>
+        <div class="fullscreen_close_container">
+          <div class="fullscreen_close">
+            <img src="img/controls/fullscreen_close.png" />
+          </div>
+          <span>Fullscreen</span>
         </div>
       </div>
     </div>

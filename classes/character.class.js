@@ -52,8 +52,7 @@ class Character extends moveableObject {
   currentImage = 0;
   speed = 10;
   world;
-  walking_sound = new Audio("/audio/walking.mp3");
-  hurt_sound = new Audio("audio/hurt.mp3");
+  
   y = 120;
   
 
@@ -70,15 +69,20 @@ class Character extends moveableObject {
 
   animate() {
     setInterval(() => {
-      this.walking_sound.pause();
+      
+      walking_sound.pause();
       if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
         this.moveRight();
-        this.walking_sound.play();
+        if(!audio_muted){
+        walking_sound.play();
+      } 
       }
 
       if (this.world.keyboard.LEFT && this.x > 0) {
         this.moveLeft();
-        this.walking_sound.play();
+        if(!audio_muted){
+        walking_sound.play();
+      }
       }
 
       if (this.world.keyboard.SPACE && !this.isAboveGround()) {

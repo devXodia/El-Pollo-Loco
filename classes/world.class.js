@@ -39,9 +39,12 @@ class World {
       this.level.coins.forEach((coin) => {
         if (this.character.isColliding(coin)) {
           this.moneyBar.addMoney();
-          this.moneyBar.coin_sound.play();
+          if(!audio_muted){
+            coin.sound.play();
+          } else {
           this.moneyBar.setPercentage(this.moneyBar.coin);
           this.level.coins.splice(0, 1);
+        }
         }
       });
     }, 200);
@@ -118,7 +121,7 @@ class World {
     this.ctx.restore();
   }
 
-  async checkCollisions() {
+   checkCollisions() {
     this.level.enemies.forEach((enemy) => {
       this.level.boss.forEach((boss) => {
         if (this.character.isColliding(enemy) && enemy.hp == 100) {

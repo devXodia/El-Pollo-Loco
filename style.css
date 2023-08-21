@@ -10,6 +10,7 @@ body {
   justify-content: center;
   background-image: url(img/desert.png);
   background-position: center;
+  background-size: 2500px 1080px;
   width: 100%;
   height: 100vh;
 }
@@ -67,6 +68,40 @@ canvas {
     0 0 20px rgba(255, 255, 255, 0.2);
   outline-color: rgba(255, 255, 255, 0);
   outline-offset: 15px;
+}
+
+.controls_container {
+  display: flex;
+  width: 720px;
+  gap: 42px;
+}
+
+.throw_container img {
+  height: 64px;
+  width: 64px;
+}
+
+.walk_container,
+.jump_container,
+.throw_container,
+.buy_container,
+.mute_audio_container,
+.show_audio_container,
+.fullscreen_open_container,
+.fullscreen_close_container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-size: 22px;
+}
+
+
+.show_audio_container{
+  display: none !important;
+}
+
+.fullscreen_close_container{
+  display: none !important;
 }
 
 @font-face {

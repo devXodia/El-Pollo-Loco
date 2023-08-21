@@ -1,16 +1,24 @@
 let canvas;
-
 let world;
 let keyboard = new Keyboard();
 
+let audio_muted;
+let music = new Audio("audio/bg_music.mp3");
+let walking_sound = new Audio("/audio/walking.mp3");
+let hurt_sound = new Audio("audio/hurt.mp3");
+let coin_sound = new Audio("audio/coin.mp3");
 
+function gameStart() {
+  initWorld();
+  removeStartScreen();
+  playMusic();
+}
 
-
-function gameStart(){
-  let game = document.getElementById('start_screen');
-  game.style.display = "none";
-  canvas = document.getElementById("canvas");
-  world = new World(canvas, keyboard);
+function muteAudio() {
+  audio_muted = true;
+  music.pause();
+  hurt_sound.pause();
+  walking_sound.pause();
 }
 
 window.addEventListener("keydown", (event) => {
@@ -73,4 +81,19 @@ function exitFullscreen() {
   } else if (document.webkitExitFullscreen) {
     document.webkitExitFullscreen();
   }
+}
+
+function playMusic() {
+  music.loop = true;
+  music.play();
+}
+
+function removeStartScreen() {
+  let game = document.getElementById("start_screen");
+  game.style.display = "none";
+}
+
+function initWorld() {
+  canvas = document.getElementById("canvas");
+  world = new World(canvas, keyboard);
 }

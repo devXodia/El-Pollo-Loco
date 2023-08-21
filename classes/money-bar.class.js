@@ -1,6 +1,6 @@
 class Moneybar extends Statusbar {
     coin = 0;
-    coin_sound = new Audio("audio/coin.mp3");
+    
 
     IMAGES_MONEY = [
         "img/7_statusbars/1_statusbar/1_statusbar_coin/blue/0.png",
