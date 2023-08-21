@@ -21,11 +21,17 @@ class Moneybar extends Statusbar {
     }
 
     addMoney(){
-        this.coin += 10;
+        this.coin += 20;
         if(this.coin > 100){
             this.coin = 100;
         }
       }
     
+    subtractMoney(){
+        this.coin -= 20;
+        if(this.coin < 0){
+            this.coin = 0
+        }
+    }
     
 }

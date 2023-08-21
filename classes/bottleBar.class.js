@@ -17,10 +17,15 @@ class Bottlebar extends Statusbar{
         this.IMAGES = this.IMAGES_BOTTLES;
         this.setPercentage(0);
         this.y = 90;
+        
     }
 
     addBottle(){
         this.bottle += 10;
-        
+        if(this.bottle >= 100){
+            this.bottle = 100;
+        }
       }
+
+      
 }

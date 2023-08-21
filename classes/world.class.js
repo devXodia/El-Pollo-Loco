@@ -30,7 +30,7 @@ class World {
       this.checkCollisions();
       this.checkThrowObjects();
       this.bottleCollison();
-      console.log(this.character.x)
+      this.buyBottle();
     }, 200);
   }
 
@@ -39,7 +39,7 @@ class World {
       this.level.coins.forEach((coin) => {
         if (this.character.isColliding(coin)) {
           this.moneyBar.addMoney();
-          if(!audio_muted){
+          if (!audio_muted) {
             coin_sound.play();
           }
           this.moneyBar.setPercentage(this.moneyBar.coin);
@@ -120,13 +120,13 @@ class World {
     this.ctx.restore();
   }
 
-   checkCollisions() {
+  checkCollisions() {
     this.level.enemies.forEach((enemy) => {
       this.level.boss.forEach((boss) => {
         if (this.character.isColliding(enemy) && enemy.hp == 100) {
           this.character.updateCharacterHealth();
         } else if (this.character.jumpCollision(enemy)) {
-          enemy.chickenHit()
+          enemy.chickenHit();
         } else if (this.character.isColliding(boss)) {
           this.character.updateCharacterHealth();
         }
@@ -163,4 +163,19 @@ class World {
       });
     });
   }
-}
+
+  buyBottle(){
+  
+      if (this.keyboard.B && this.moneyBar.coin > 0) {
+        this.moneyBar.subtractMoney(); 
+        this.bottleBar.addBottle();   
+        this.moneyBar.setPercentage(this.moneyBar.coin);; 
+        this.bottleBar.setPercentage(this.bottleBar.bottle); 
+        console.log("bottles", world.bottleBar.bottle);
+        console.log("coins", world.moneyBar.coin)
+      }
+    }
+   
+    
+  }
+
