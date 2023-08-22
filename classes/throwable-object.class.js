@@ -26,7 +26,7 @@ class ThrowableObject extends moveableObject {
     this.y = y;
     this.height = 80;
     this.isThrown = true;
-    console.log("hello", world.character.otherDirection);
+    this.otherDirection = world.character.otherDirection;
     this.throw();
   }
 
@@ -37,15 +37,16 @@ class ThrowableObject extends moveableObject {
 
       this.throwInterval = setInterval(
         () => {
-          if (world.character.otherDirection == true) {
-            this.x -= 10;
-          } else if (world.character.otherDirection == false) {
-            this.x += 10;
+          if (this.otherDirection) {
+          
+          this.x -= 10;
+          } if (!this.otherDirection ) {
+            this.x += 10
           }
           this.playAnimation(this.IMAGES_ROTATION);
         },
 
-        25
+        30
       );
     }
   }

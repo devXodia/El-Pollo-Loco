@@ -123,9 +123,10 @@ class World {
   checkCollisions() {
     this.level.enemies.forEach((enemy) => {
       this.level.boss.forEach((boss) => {
-        if (this.character.isColliding(enemy) && enemy.hp == 100) {
+        if (this.character.isColliding(enemy) && !this.character.isAboveGround() && enemy.hp == 100) {
           this.character.updateCharacterHealth();
-        } else if (this.character.jumpCollision(enemy)) {
+        } else 
+        if (this.character.isAboveGround() && this.character.isColliding(enemy)) {
           enemy.chickenHit();
         } else if (this.character.isColliding(boss)) {
           this.character.updateCharacterHealth();

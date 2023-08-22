@@ -87,7 +87,6 @@ class Character extends moveableObject {
         this.jump();
       }
 
-      
       this.world.camera_x = -this.x + 100;
     }, 1000 / 60);
 
@@ -116,6 +115,6 @@ class Character extends moveableObject {
   }
 
   jumpCollision(enemy) {
-    return this.x + this.width > enemy.x && this.x < enemy.x;
+    return this.isColliding(enemy) && this.isAboveGround();
+    }
   }
-}

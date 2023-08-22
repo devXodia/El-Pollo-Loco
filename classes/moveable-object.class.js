@@ -14,12 +14,15 @@ class moveableObject extends DrawableObject {
   }
 
   isAboveGround() {
+     
     if (this instanceof ThrowableObject) {
       // Throwable Object should always fall
       return true;
     } else {
       return this.y < 250;
+      
     }
+    
   }
 
   isColliding(mo) {
@@ -74,6 +77,7 @@ class moveableObject extends DrawableObject {
 
   jump() {
     this.speedY = 22;
+    
   }
 
   updateCharacterHealth() {
