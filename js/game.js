@@ -80,10 +80,14 @@ function enterFullscreen(element) {
 
 function goFullscreen() {
   let container = document.getElementById("game_container");
-  document.getElementById("close_fullscreen").display = "flex";
-  document.getElementById("open_fullscreen").display = "none";
-  enterFullscreen(canvas);
+  showOpenFullscreenButton();
+  changeCanvasSize();
+  enterFullscreen(container);
+}
 
+function closeFullscreen() {
+  showCloseFullscreenButton();
+  exitFullscreen();
 }
 
 function exitFullscreen() {
@@ -92,8 +96,6 @@ function exitFullscreen() {
   } else if (document.webkitExitFullscreen) {
     document.webkitExitFullscreen();
   }
-  document.getElementById("close_fullscreen").display = "none";
-  document.getElementById("open_fullscreen").display = "flex";
 }
 
 function playMusic() {
@@ -133,4 +135,19 @@ function removeStartScreen() {
 function initWorld() {
   canvas = document.getElementById("canvas");
   world = new World(canvas, keyboard);
+}
+
+function changeCanvasSize(){
+  canvas.style.width = "100%";
+  canvas.style.height = "100%";
+}
+
+function showOpenFullscreenButton(){
+  document.getElementById("close_fullscreen").style.display = "flex";
+  document.getElementById("open_fullscreen").style.display = "none";
+}
+
+function showCloseFullscreenButton(){
+  document.getElementById("close_fullscreen").style.display = "none";
+  document.getElementById("open_fullscreen").style.display = "flex";
 }

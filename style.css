@@ -109,7 +109,7 @@ canvas {
 }
 
 .fullscreen_close_container {
-  display: none !important;
+  display: none;
 }
 
 .ingame_container {
