@@ -83,6 +83,7 @@ function goFullscreen() {
   document.getElementById("close_fullscreen").display = "flex";
   document.getElementById("open_fullscreen").display = "none";
   enterFullscreen(canvas);
+
 }
 
 function exitFullscreen() {

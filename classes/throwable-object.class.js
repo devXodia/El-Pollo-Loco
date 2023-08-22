@@ -26,6 +26,7 @@ class ThrowableObject extends moveableObject {
     this.y = y;
     this.height = 80;
     this.isThrown = true;
+    console.log("hello", world.character.otherDirection);
     this.throw();
   }
 
@@ -34,10 +35,18 @@ class ThrowableObject extends moveableObject {
       this.speedY = 25;
       this.applyGravityBottle();
 
-      this.throwInterval = setInterval(() => {
-        this.x += 10;
-        this.playAnimation(this.IMAGES_ROTATION);
-      }, 25);
+      this.throwInterval = setInterval(
+        () => {
+          if (world.character.otherDirection == true) {
+            this.x -= 10;
+          } else if (world.character.otherDirection == false) {
+            this.x += 10;
+          }
+          this.playAnimation(this.IMAGES_ROTATION);
+        },
+
+        25
+      );
     }
   }
 
@@ -81,10 +90,9 @@ class ThrowableObject extends moveableObject {
   positionBottleOnEnemy(bottle, enemy) {
     bottle.x = enemy.x + (enemy.width - bottle.width) / 2;
     bottle.y = enemy.y + (enemy.height - bottle.height) / 2;
-    
   }
 
-  killBottle(){
+  killBottle() {
     world.ThrowableObjects.splice(0, 1);
   }
 }
