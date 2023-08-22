@@ -53,7 +53,7 @@ class Character extends moveableObject {
   speed = 10;
   world;
 
-  y = 120;
+  y = 250;
 
   constructor() {
     super().loadImage("img/2_character_pepe/2_walk/W-21.png");
@@ -85,6 +85,7 @@ class Character extends moveableObject {
 
       if (this.world.keyboard.SPACE && !this.isAboveGround()) {
         this.jump();
+        
       }
 
       this.world.camera_x = -this.x + 100;

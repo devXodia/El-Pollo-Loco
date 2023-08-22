@@ -127,6 +127,7 @@ class World {
           this.character.updateCharacterHealth();
         } else 
         if (this.character.isAboveGround() && this.character.isColliding(enemy)) {
+          this.character.jump();
           enemy.chickenHit();
         } else if (this.character.isColliding(boss)) {
           this.character.updateCharacterHealth();
