@@ -1,7 +1,6 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
-
 let audio_muted;
 let music = new Audio("audio/bg_music.mp3");
 let walking_sound = new Audio("/audio/walking.mp3");
@@ -12,7 +11,6 @@ let negative_sound = new Audio("audio/negative.mp3");
 function gameStart() {
   startLevel();
   initWorld();
-
   removeStartScreen();
   moveButtons();
   playMusic();
@@ -137,17 +135,52 @@ function initWorld() {
   world = new World(canvas, keyboard);
 }
 
-function changeCanvasSize(){
+function changeCanvasSize() {
   canvas.style.width = "100%";
   canvas.style.height = "100%";
 }
 
-function showOpenFullscreenButton(){
+function showOpenFullscreenButton() {
   document.getElementById("close_fullscreen").style.display = "flex";
   document.getElementById("open_fullscreen").style.display = "none";
 }
 
-function showCloseFullscreenButton(){
+function showCloseFullscreenButton() {
   document.getElementById("close_fullscreen").style.display = "none";
   document.getElementById("open_fullscreen").style.display = "flex";
+}
+
+function gameEnd() {
+  if (world.boss.hp <= 0) {
+    wonGame();
+  } else if (world.character.energy <= 0) {
+    lostGame();
+  }
+}
+
+function restartGame(){
+  clearScreen();
+  
+}
+
+
+function wonGame() {
+  let endscreen = document.getElementById("endgame");
+  let endImg = document.getElementById("end_img");
+  let span = document.getElementById('winMsg');
+  span.style.display = "flex";
+  endscreen.style.display = "flex";
+  endImg.src = "img/9_intro_outro_screens/game_over/game over!.png";
+}
+
+function lostGame() {
+  let endscreen = document.getElementById("endgame");
+  let endImg = document.getElementById("end_img");
+  endscreen.style.display = "flex";
+  endImg.src = "img/9_intro_outro_screens/game_over/oh no you lost!.png";
+}
+
+function clearScreen(){
+  let endscreen = document.getElementById("endgame");
+  endscreen.style.display = "none";
 }

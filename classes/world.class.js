@@ -32,6 +32,7 @@ class World {
       this.checkThrowObjects();
       this.bottleCollison();
       this.buyBottle();
+      gameEnd();
     }, 200);
   }
 
@@ -193,4 +194,6 @@ class World {
   getIndex(enemy) {
     return level1.enemies.indexOf(enemy);
   }
+
+  
 }
