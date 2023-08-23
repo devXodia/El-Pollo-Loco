@@ -35,16 +35,18 @@ class Chicken extends moveableObject {
     setInterval(() => { 
       if(this.hp === 100){
       this.playAnimation(this.IMAGES_WALKING);
-    } else if(this.hp < 100){
-      this.loadImage(this.IMAGE_DEAD);
-      this.IMAGE_DEAD.splice(0, 1);
-      
-    }
+    } 
   }, 200);
   }
 
   chickenHit(){
     this.hp -= 100;
+  }
+
+  chickenDeathAnimation(enemy){
+    this.newPlayAnimation(this.IMAGE_DEAD, 100, () => {
+      world.level.enemies.splice(world.getIndex(enemy), 1)
+    })
   }
 }
 

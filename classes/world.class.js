@@ -129,6 +129,7 @@ class World {
         if (this.character.isAboveGround() && this.character.isColliding(enemy)) {
           this.character.jump();
           enemy.chickenHit();
+          enemy.chickenDeathAnimation(enemy);
         } else if (this.character.isColliding(boss)) {
           this.character.updateCharacterHealth();
         }
@@ -185,6 +186,10 @@ class World {
    
    bottlesNotAvailable(){
     return this.keyboard.D && this.bottleBar.bottle <= 0;
+   }
+
+   getIndex(enemy){
+    return world.level.enemies.indexOf(enemy);
    }
   }
 

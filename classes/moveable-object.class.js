@@ -91,6 +91,30 @@ class moveableObject extends DrawableObject {
   bottleKillsChicken(enemy, bottle) {
     enemy.chickenHit();
     bottle.positionBottleOnEnemy(bottle, enemy);
+    enemy.chickenDeathAnimation(enemy)
     bottle.killBottle();
+  }
+
+  newPlayAnimation(images, duration, onComplete) {
+    let i = this.currentImage % images.length;
+    let path = images[i];
+    this.img = this.imageCache[path];
+    this.currentImage++;
+
+    // Set up a timer to stop the animation after the specified duration
+    const animationTimer = setTimeout(() => {
+      this.stopAnimation();
+      if (onComplete) {
+        onComplete();
+      }
+    }, duration);
+
+    // Keep track of the timer so you can cancel it if needed
+    this.animationTimer = animationTimer;
+  }
+
+  stopAnimation() {
+    clearInterval(this.animationTimer);
+    // Reset the currentImage or perform any other necessary cleanup
   }
 }
