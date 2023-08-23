@@ -57,6 +57,7 @@ class Endboss extends moveableObject {
       else if(this.bossIsHurt()){
         this.newPlayAnimation(this.IMAGES_HURT, 200, () => {
           this.bossMove();
+          this.speed = 20;
         })
       }
     }, 200);

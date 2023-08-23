@@ -166,7 +166,6 @@ class World {
       });
       if (bottle.isColliding(this.boss)) {
         this.boss.bossHit();
-        console.log("boss hp:", this.boss.hp);
       }
     });
   }
