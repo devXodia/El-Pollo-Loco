@@ -91,7 +91,7 @@ class moveableObject extends DrawableObject {
   bottleKillsChicken(enemy, bottle) {
     enemy.chickenHit();
     bottle.positionBottleOnEnemy(bottle, enemy);
-    enemy.chickenDeathAnimation(enemy)
+    enemy.chickenDeathAnimation(enemy);
     bottle.killBottle();
   }
 

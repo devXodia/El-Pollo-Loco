@@ -16,8 +16,8 @@ class Endboss extends moveableObject {
   IMAGES_HURT = [
     "img/4_enemie_boss_chicken/4_hurt/G21.png",
     "img/4_enemie_boss_chicken/4_hurt/G22.png",
-    "img/4_enemie_boss_chicken/4_hurt/G23.png"
-  ]
+    "img/4_enemie_boss_chicken/4_hurt/G23.png",
+  ];
 
   IMAGES_ATTACK = [
     "img/4_enemie_boss_chicken/3_attack/G13.png",
@@ -28,16 +28,16 @@ class Endboss extends moveableObject {
     "img/4_enemie_boss_chicken/3_attack/G18.png",
     "img/4_enemie_boss_chicken/3_attack/G19.png",
     "img/4_enemie_boss_chicken/3_attack/G20.png",
-  ]
+  ];
 
   IMAGES_DEAD = [
     "img/4_enemie_boss_chicken/5_dead/G24.png",
     "img/4_enemie_boss_chicken/5_dead/G25.png",
-    "img/4_enemie_boss_chicken/5_dead/G26.png"
-  ]
+    "img/4_enemie_boss_chicken/5_dead/G26.png",
+  ];
 
   constructor() {
-    super().loadImage(this.IMAGES_WALKING[0]);
+    super().loadImage(this.IMAGES_WALKING[1]);
     this.loadImages(this.IMAGES_WALKING);
     this.loadImages(this.IMAGES_HURT);
     this.loadImages(this.IMAGES_ATTACK);
@@ -48,40 +48,39 @@ class Endboss extends moveableObject {
 
   animate() {
     let bossAnimation = setInterval(() => {
-      this.loadImage(this.IMAGES_WALKING[1]);
-      if(this.bossIsHurt()){
-      this.playAnimation(this.IMAGES_HURT);
-      this.bossMove();
-      }
-     if(this.bossIsDead()){
-        this.hp = 0;
-        this.bossStopMoving();
-        clearInterval(bossAnimation);
-        this.playAnimation(this.IMAGES_DEAD);
-        this.loadImage(this.IMAGES_DEAD[2]);
+      if(this.bossIsDead()){
+        this.newPlayAnimation(this.IMAGES_DEAD, 150, () => {
+          this.bossStopMoving();
+          clearInterval(bossAnimation);
+          this.loadImage(this.IMAGES_DEAD[2]);
+        })}
+      else if(this.bossIsHurt()){
+        this.newPlayAnimation(this.IMAGES_HURT, 200, () => {
+          this.bossMove();
+        })
       }
     }, 200);
   }
 
-  
-
-  bossStopMoving(){
-      this.x = this.currentX;
-
-    
+  bossStopMoving() {
+    this.x = this.currentX;
   }
 
-  bossMove(){
+  bossMove() {
     this.moveLeft();
     this.otherDirection = false;
     this.currentX = this.x;
   }
 
- bossIsHurt(){
- return this.hp < 100;
- }
- 
- bossIsDead(){
- return this.hp <= 0;
- }
+  bossIsHurt() {
+    return this.hp < 100;
+  }
+
+  bossIsDead() {
+    return this.hp <= 0;
+  }
+
+  bossHit(){
+    this.hp -= 10;
+  }
 }

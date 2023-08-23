@@ -45,7 +45,7 @@ class Chicken extends moveableObject {
 
   chickenDeathAnimation(enemy){
     this.newPlayAnimation(this.IMAGE_DEAD, 100, () => {
-      world.level.enemies.splice(world.getIndex(enemy), 1)
+      level1.enemies.splice(world.getIndex(enemy), 1)
     })
   }
 }

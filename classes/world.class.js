@@ -1,5 +1,6 @@
 class World {
   character = new Character();
+  boss = new Endboss();
   level = level1;
   ctx;
   canvas;
@@ -79,7 +80,7 @@ class World {
     this.addObjectsToMap(this.level.bottles);
     this.addObjectsToMap(this.level.coins);
     this.addObjectsToMap(this.level.enemies);
-    this.addObjectsToMap(this.level.boss);
+    this.addToMap(this.boss);
 
     this.ctx.translate(-this.camera_x, 0);
 
@@ -122,18 +123,22 @@ class World {
 
   checkCollisions() {
     this.level.enemies.forEach((enemy) => {
-      this.level.boss.forEach((boss) => {
-        if (this.character.isColliding(enemy) && !this.character.isAboveGround() && enemy.hp == 100) {
-          this.character.updateCharacterHealth();
-        } else 
-        if (this.character.isAboveGround() && this.character.isColliding(enemy)) {
-          this.character.jump();
-          enemy.chickenHit();
-          enemy.chickenDeathAnimation(enemy);
-        } else if (this.character.isColliding(boss)) {
-          this.character.updateCharacterHealth();
-        }
-      });
+      if (
+        this.character.isColliding(enemy) &&
+        !this.character.isAboveGround() &&
+        enemy.hp == 100
+      ) {
+        this.character.updateCharacterHealth();
+      } else if (
+        this.character.isAboveGround() &&
+        this.character.isColliding(enemy)
+      ) {
+        this.character.jump();
+        enemy.chickenHit();
+        enemy.chickenDeathAnimation(enemy);
+      } else if (this.character.isColliding(this.boss)) {
+        this.character.updateCharacterHealth();
+      }
     });
   }
 
@@ -144,52 +149,49 @@ class World {
       this.bottleBar.bottle -= 10;
       this.bottleBar.percentage -= 8;
       this.bottleBar.setPercentage(this.bottleBar.percentage);
-    } else if(this.keyboard.D && !audio_muted && this.bottlesNotAvailable()){
+    } else if (this.keyboard.D && !audio_muted && this.bottlesNotAvailable()) {
       negative_sound.play();
-  }
+    }
   }
 
   bottleCollison() {
     this.ThrowableObjects.forEach((bottle) => {
       this.level.enemies.forEach((enemy) => {
-        this.level.boss.forEach((boss) => {
-          if (bottle.isColliding(enemy)) {
-            bottle.stopIntervals();
-            bottle.bottlePlayAnimation(bottle.IMAGES_SPLASH, 100, () => {
-              bottle.bottleKillsChicken(enemy, bottle);
-            });
-          } else if (bottle.isColliding(boss)) {
-            boss.hp -= 4;
-            if (boss.hp < 50) {
-              boss.speed = 20;
-            }
-          }
-        });
+        if (bottle.isColliding(enemy)) {
+          bottle.stopIntervals();
+          bottle.bottlePlayAnimation(bottle.IMAGES_SPLASH, 100, () => {
+            bottle.bottleKillsChicken(enemy, bottle);
+          });
+        }
       });
+      if (bottle.isColliding(this.boss)) {
+        this.boss.bossHit();
+        console.log("boss hp:", this.boss.hp);
+      }
     });
   }
 
-  buyBottle(){
-  
-      if (this.keyboard.B && this.moneyBar.coin > 0) {
-        this.moneyBar.subtractMoney(); 
-        this.bottleBar.addBottle();   
-        this.moneyBar.setPercentage(this.moneyBar.coin);; 
-        this.bottleBar.setPercentage(this.bottleBar.bottle); 
-        
-      } else if(this.keyboard.B && this.moneyBar.coin <= 0 || this.keyboard.B && this.bottleBar.bottle >= 100){
-        if(!audio_muted){
-          negative_sound.play();
-        }
+  buyBottle() {
+    if (this.keyboard.B && this.moneyBar.coin > 0) {
+      this.moneyBar.subtractMoney();
+      this.bottleBar.addBottle();
+      this.moneyBar.setPercentage(this.moneyBar.coin);
+      this.bottleBar.setPercentage(this.bottleBar.bottle);
+    } else if (
+      (this.keyboard.B && this.moneyBar.coin <= 0) ||
+      (this.keyboard.B && this.bottleBar.bottle >= 100)
+    ) {
+      if (!audio_muted) {
+        negative_sound.play();
       }
     }
-   
-   bottlesNotAvailable(){
-    return this.keyboard.D && this.bottleBar.bottle <= 0;
-   }
-
-   getIndex(enemy){
-    return world.level.enemies.indexOf(enemy);
-   }
   }
 
+  bottlesNotAvailable() {
+    return this.keyboard.D && this.bottleBar.bottle <= 0;
+  }
+
+  getIndex(enemy) {
+    return level1.enemies.indexOf(enemy);
+  }
+}
