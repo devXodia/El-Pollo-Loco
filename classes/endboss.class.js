@@ -49,10 +49,12 @@ class Endboss extends moveableObject {
   animate() {
     let bossAnimation = setInterval(() => {
       if(this.bossIsDead()){
-        this.newPlayAnimation(this.IMAGES_DEAD, 150, () => {
+        this.newPlayAnimation(this.IMAGES_DEAD, 100, () => {
           this.bossStopMoving();
           clearInterval(bossAnimation);
           this.loadImage(this.IMAGES_DEAD[2]);
+          wonGame();
+          clearAllIntervals();
         })}
       else if(this.bossIsHurt()){
         this.newPlayAnimation(this.IMAGES_HURT, 200, () => {

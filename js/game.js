@@ -151,16 +151,16 @@ function showCloseFullscreenButton() {
 }
 
 function gameEnd() {
-  if (world.boss.hp <= 0) {
-    wonGame();
-  } else if (world.character.energy <= 0) {
+ if (world.character.energy <= 0) {
     lostGame();
+    clearAllIntervals();
+    
   }
 }
 
 function restartGame(){
   clearScreen();
-  
+  gameStart();
 }
 
 
@@ -183,4 +183,8 @@ function lostGame() {
 function clearScreen(){
   let endscreen = document.getElementById("endgame");
   endscreen.style.display = "none";
+}
+
+function clearAllIntervals() {
+  for (let i = 1; i < 9999; i++) window.clearInterval(i);
 }
