@@ -53,6 +53,7 @@ class Endboss extends moveableObject {
           this.bossStopMoving();
           clearInterval(bossAnimation);
           this.loadImage(this.IMAGES_DEAD[2]);
+          
           wonGame();
           clearAllIntervals();
         })}

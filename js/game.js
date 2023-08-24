@@ -7,13 +7,17 @@ let walking_sound = new Audio("/audio/walking.mp3");
 let hurt_sound = new Audio("audio/hurt.mp3");
 let coin_sound = new Audio("audio/coin.mp3");
 let negative_sound = new Audio("audio/negative.mp3");
+let boss_music = new Audio("audio/boss_music.mp3");
 
 function gameStart() {
   startLevel();
   initWorld();
   removeStartScreen();
   moveButtons();
-  playMusic();
+  if(!audio_muted){
+    playAudio();
+  }
+  
 }
 
 window.addEventListener("keydown", (event) => {
@@ -151,37 +155,38 @@ function showCloseFullscreenButton() {
 }
 
 function gameEnd() {
- if (world.character.energy <= 0) {
+  if (world.character.energy <= 0) {
     lostGame();
     clearAllIntervals();
-    
+    music.pause();
   }
 }
 
-function restartGame(){
+function restartGame() {
   resetObjects();
   clearScreen();
   gameStart();
 }
 
-
 function wonGame() {
+  resetAudio();
   let endscreen = document.getElementById("endgame");
   let endImg = document.getElementById("end_img");
-  let span = document.getElementById('winMsg');
+  let span = document.getElementById("winMsg");
   span.style.display = "flex";
   endscreen.style.display = "flex";
   endImg.src = "img/9_intro_outro_screens/game_over/game over!.png";
 }
 
 function lostGame() {
+  resetAudio();
   let endscreen = document.getElementById("endgame");
   let endImg = document.getElementById("end_img");
   endscreen.style.display = "flex";
   endImg.src = "img/9_intro_outro_screens/game_over/oh no you lost!.png";
 }
 
-function clearScreen(){
+function clearScreen() {
   let endscreen = document.getElementById("endgame");
   endscreen.style.display = "none";
 }
@@ -190,8 +195,23 @@ function clearAllIntervals() {
   for (let i = 1; i < 9999; i++) window.clearInterval(i);
 }
 
-function resetObjects(){
+function resetObjects() {
   Chicken.nextX = 550;
   Coin.nextX = 250;
   Bottle.nextX = 350;
+}
+
+function resetAudio(){
+  walking_sound.pause();
+  hurt_sound.pause();
+  coin_sound.pause();
+  negative_sound.pause();
+  music.pause();
+  boss_music.pause();
+  boss_music.currentTime = 0;
+  music.currentTime = 0;
+  coin_sound.currentTime = 0;
+  hurt_sound.currentTime = 0;
+  negative_sound.currentTime = 0;
+  walking_sound.currentTime = 2;
 }
