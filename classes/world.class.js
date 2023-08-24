@@ -10,6 +10,7 @@ class World {
   moneyBar = new Moneybar();
   bottleBar = new Bottlebar();
   ThrowableObjects = [];
+  
 
   constructor(canvas) {
     this.ctx = canvas.getContext("2d");

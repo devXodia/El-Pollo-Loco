@@ -159,6 +159,7 @@ function gameEnd() {
 }
 
 function restartGame(){
+  resetObjects();
   clearScreen();
   gameStart();
 }
@@ -187,4 +188,10 @@ function clearScreen(){
 
 function clearAllIntervals() {
   for (let i = 1; i < 9999; i++) window.clearInterval(i);
+}
+
+function resetObjects(){
+  Chicken.nextX = 550;
+  Coin.nextX = 250;
+  Bottle.nextX = 350;
 }
