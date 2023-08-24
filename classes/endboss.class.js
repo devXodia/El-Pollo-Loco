@@ -84,6 +84,6 @@ class Endboss extends moveableObject {
   }
 
   bossHit(){
-    this.hp -= 10;
+    this.hp -= 6;
   }
 }

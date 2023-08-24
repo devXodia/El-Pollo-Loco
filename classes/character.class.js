@@ -52,8 +52,8 @@ class Character extends moveableObject {
   currentImage = 0;
   speed = 10;
   world;
-
   y = 250;
+  width = 125;
 
   constructor() {
     super().loadImage("img/2_character_pepe/2_walk/W-21.png");

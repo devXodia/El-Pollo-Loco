@@ -33,7 +33,7 @@ class World {
       this.bottleCollison();
       this.buyBottle();
       gameEnd();
-    }, 200);
+    }, 100);
   }
 
   getCoin() {
@@ -166,24 +166,25 @@ class World {
         }
       });
       if (bottle.isColliding(this.boss)) {
+        console.log("boss hp:", this.boss.hp)
         this.boss.bossHit();
       }
     });
   }
 
   buyBottle() {
-    if (this.keyboard.B && this.moneyBar.coin > 0) {
-      this.moneyBar.subtractMoney();
-      this.bottleBar.addBottle();
-      this.moneyBar.setPercentage(this.moneyBar.coin);
-      this.bottleBar.setPercentage(this.bottleBar.bottle);
-    } else if (
+    if (
       (this.keyboard.B && this.moneyBar.coin <= 0) ||
       (this.keyboard.B && this.bottleBar.bottle >= 100)
     ) {
       if (!audio_muted) {
         negative_sound.play();
       }
+    } else if (this.keyboard.B && this.moneyBar.coin > 0) {
+      this.moneyBar.subtractMoney();
+      this.bottleBar.addBottle();
+      this.moneyBar.setPercentage(this.moneyBar.coin);
+      this.bottleBar.setPercentage(this.bottleBar.bottle);
     }
   }
 
@@ -194,6 +195,4 @@ class World {
   getIndex(enemy) {
     return level1.enemies.indexOf(enemy);
   }
-
-  
 }
