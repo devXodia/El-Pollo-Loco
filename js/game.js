@@ -73,7 +73,8 @@ window.addEventListener("keyup", (event) => {
   window.addEventListener(
     "orientationchange",
     function () {
-      checkScreenSize()
+      checkScreenSize();
+      location.reload();
 });
 
 function enterFullscreen(element) {
@@ -242,3 +243,4 @@ function checkScreenSize() {
     document.getElementById("game_container").style.display = "flex";
   }
 }
+
