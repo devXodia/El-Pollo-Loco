@@ -97,9 +97,6 @@ class Character extends moveableObject {
       }
       if(world.boss.boss_angry){
         world.boss.bossMove();
-        if(world.boss.x == this.x + 30){
-       world.boss.bossStopMoving();
-      }
       }
         
       this.world.camera_x = -this.x + 100;

@@ -144,7 +144,8 @@ class World {
         this.character.jump();
         enemy.chickenHit();
         enemy.chickenDeathAnimation(enemy);
-      } else if (this.boss.isColliding(this.character) || this.character.isColliding(this.boss)) {
+      } else if(this.character.isColliding(this.boss)){
+        
         this.character.updateCharacterHealth();
       }
     });

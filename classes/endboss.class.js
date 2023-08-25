@@ -64,10 +64,7 @@ class Endboss extends moveableObject {
       else if(this.hp == 100){
         this.newPlayAnimation(this.IMAGES_WALKING, 200, () => {})
       }
-      else if(this.currentX === world.character.x){
-        this.bossStopMoving();
-        this.newPlayAnimation(this.IMAGES_ATTACK, 200, () => {})
-      }
+      
     }, 200);
   }
 
