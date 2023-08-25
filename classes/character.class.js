@@ -70,6 +70,7 @@ class Character extends moveableObject {
     setInterval(() => {
       walking_sound.pause();
       if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
+        
         this.moveRight();
         if (!audio_muted) {
           walking_sound.play();
@@ -87,14 +88,22 @@ class Character extends moveableObject {
         this.jump();
         
       }
-      if (this.x == 1980){
+      if (this.x >= 1980){
+        world.boss.boss_angry = true;
         if(!audio_muted){
           music.pause();
           boss_music.play();
         }
       }
+      if(world.boss.boss_angry){
+        world.boss.bossMove();
+        if(world.boss.x == this.x + 30){
+       world.boss.bossStopMoving();
+      }
+      }
+        
       this.world.camera_x = -this.x + 100;
-    }, 1000 / 60);
+    }, 1000 / 30);
 
     setInterval(
       () => {

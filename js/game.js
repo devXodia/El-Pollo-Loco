@@ -13,12 +13,64 @@ let buy_audio = new Audio("audio/buy.mp3");
 
 function gameStart() {
   startLevel();
+ activateMobileButtons();
   initWorld();
   removeStartScreen();
   moveButtons();
+  
   if (!audio_muted) {
     playAudio();
   }
+
+}
+
+
+function activateMobileButtons(){
+
+  document.getElementById('left').addEventListener("touchstart", (e) => {
+    e.preventDefault();
+    keyboard.LEFT = true;
+  });
+  document.getElementById('left').addEventListener("touchend", (e) => {
+    keyboard.LEFT = false;
+  });
+  document.getElementById('right').addEventListener("touchstart", (e) => {
+    e.preventDefault();
+    keyboard.RIGHT = true;
+  });
+  document.getElementById('right').addEventListener("touchend", (e) => {
+    e.preventDefault();
+    keyboard.RIGHT = false;
+  });
+
+  document.getElementById('buy_btn').addEventListener("touchstart", (e) => {
+    e.preventDefault();
+    keyboard.B = true;
+  });
+  document.getElementById('buy_btn').addEventListener("touchend", (e) => {
+    e.preventDefault();
+    keyboard.B = false;
+  });
+
+  document.getElementById('throw_btn').addEventListener("touchstart", (e) => {
+    e.preventDefault();
+    keyboard.D = true;
+  });
+  document.getElementById('throw_btn').addEventListener("touchend", (e) => {
+    e.preventDefault();
+    keyboard.D = false;
+  });
+
+  document.getElementById('jump_btn').addEventListener("touchstart", (e) => {
+    e.preventDefault();
+    keyboard.SPACE = true;
+  });
+  document.getElementById('jump_btn').addEventListener("touchend", (e) => {
+    e.preventDefault();
+    keyboard.SPACE = false;
+  });
+
+
 }
 
 window.addEventListener("keydown", (event) => {
@@ -45,6 +97,9 @@ window.addEventListener("keydown", (event) => {
   }
 });
 
+
+
+
 window.addEventListener("keyup", (event) => {
   if (event.keyCode == "39") {
     keyboard.RIGHT = false;
@@ -69,13 +124,15 @@ window.addEventListener("keyup", (event) => {
   }
 });
 
-
   window.addEventListener(
     "orientationchange",
     function () {
       checkScreenSize();
       location.reload();
 });
+
+
+
 
 function enterFullscreen(element) {
   if (element.requestFullscreen) {
@@ -241,6 +298,9 @@ function checkScreenSize() {
   } else if (screen.availHeight < screen.availWidth) {
     document.getElementById("portrait").style.display = "none";
     document.getElementById("game_container").style.display = "flex";
+    
   }
 }
+
+
 

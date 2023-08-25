@@ -5,6 +5,7 @@ class Endboss extends moveableObject {
   speed = 4.75;
   hp = 100;
   currentX;
+  boss_angry = false;
 
   IMAGES_WALKING = [
     "img/4_enemie_boss_chicken/1_walk/G1.png",
@@ -53,15 +54,19 @@ class Endboss extends moveableObject {
           this.bossStopMoving();
           clearInterval(bossAnimation);
           this.loadImage(this.IMAGES_DEAD[2]);
-          
           wonGame();
           clearAllIntervals();
         })}
       else if(this.bossIsHurt()){
         this.newPlayAnimation(this.IMAGES_HURT, 200, () => {
-          this.bossMove();
-          this.speed = 20;
         })
+      }
+      else if(this.hp == 100){
+        this.newPlayAnimation(this.IMAGES_WALKING, 200, () => {})
+      }
+      else if(this.currentX === world.character.x){
+        this.bossStopMoving();
+        this.newPlayAnimation(this.IMAGES_ATTACK, 200, () => {})
       }
     }, 200);
   }
@@ -85,6 +90,6 @@ class Endboss extends moveableObject {
   }
 
   bossHit(){
-    this.hp -= 6;
+    this.hp -= 8;
   }
 }
