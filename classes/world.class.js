@@ -189,6 +189,7 @@ class World {
       }
     } else if (this.keyboard.B && this.moneyBar.coin > 0) {
       if(!audio_muted){
+        buy_audio.currentTime = 0;
         buy_audio.play();
       }
       this.moneyBar.subtractMoney();
