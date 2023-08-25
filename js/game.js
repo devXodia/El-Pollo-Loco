@@ -16,25 +16,10 @@ function gameStart() {
   initWorld();
   removeStartScreen();
   moveButtons();
-  if(!audio_muted){
+  if (!audio_muted) {
     playAudio();
   }
-  
 }
-
-window.addEventListener("orientationchange", function() {                   
-  if (window.matchMedia("(orientation: portrait)").matches) {
-      document.getElementById('portrait').style.display = "flex";
-      document.getElementById('game_container').style.display= "none";
-   }
-  if (window.matchMedia("(orientation: landscape)").matches) {
-    document.getElementById('portrait').style.display = "none";
-      document.getElementById('game_container').style.display= "flex";
-   }
-}, false);
-
-
-
 
 window.addEventListener("keydown", (event) => {
   if (event.keyCode == "39") {
@@ -82,6 +67,13 @@ window.addEventListener("keyup", (event) => {
   if (event.keyCode == "66") {
     keyboard.B = false;
   }
+});
+
+
+  window.addEventListener(
+    "orientationchange",
+    function () {
+      checkScreenSize()
 });
 
 function enterFullscreen(element) {
@@ -185,7 +177,7 @@ function restartGame() {
 }
 
 function wonGame() {
-  if(!audio_muted){
+  if (!audio_muted) {
     congrats.play();
   }
   resetAudio();
@@ -220,7 +212,7 @@ function resetObjects() {
   Bottle.nextX = 350;
 }
 
-function resetAudio(){
+function resetAudio() {
   walking_sound.pause();
   hurt_sound.pause();
   coin_sound.pause();
@@ -231,7 +223,7 @@ function resetAudio(){
   setTimeAudio();
 }
 
-function setTimeAudio(){
+function setTimeAudio() {
   buy_audio.currentTime = 0;
   boss_music.currentTime = 0;
   music.currentTime = 0;
@@ -239,4 +231,14 @@ function setTimeAudio(){
   hurt_sound.currentTime = 0;
   negative_sound.currentTime = 0;
   walking_sound.currentTime = 2;
+}
+
+function checkScreenSize() {
+  if (screen.availHeight > screen.availWidth) {
+    document.getElementById("portrait").style.display = "flex";
+    document.getElementById("game_container").style.display = "none";
+  } else if (screen.availHeight < screen.availWidth) {
+    document.getElementById("portrait").style.display = "none";
+    document.getElementById("game_container").style.display = "flex";
+  }
 }
