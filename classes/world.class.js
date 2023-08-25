@@ -144,11 +144,17 @@ class World {
         this.character.jump();
         enemy.chickenHit();
         enemy.chickenDeathAnimation(enemy);
-      } else if(this.character.isColliding(this.boss)){
-        
+
+      }}); 
+      if(this.character.isColliding(this.boss)){
+
+        this.boss.newPlayAnimation(this.boss.IMAGES_ATTACK, 200, () => {
+          this.boss.bossStopMoving();
+        })
         this.character.updateCharacterHealth();
+        this.boss.bossStopMoving();
       }
-    });
+    
   }
 
   checkThrowObjects() {

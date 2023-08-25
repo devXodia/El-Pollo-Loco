@@ -89,15 +89,20 @@ class Character extends moveableObject {
         
       }
       if (this.x >= 1980){
-        world.boss.boss_angry = true;
         if(!audio_muted){
           music.pause();
           boss_music.play();
         }
+        world.boss.bossMove();
+      }
+      if(world.boss.x == this.x){
+        world.boss.boss_angry = false;
+        world.boss.bossStopMoving();
       }
       if(world.boss.boss_angry){
         world.boss.bossMove();
       }
+      
         
       this.world.camera_x = -this.x + 100;
     }, 1000 / 60);
