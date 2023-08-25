@@ -22,6 +22,20 @@ function gameStart() {
   
 }
 
+window.addEventListener("orientationchange", function() {                   
+  if (window.matchMedia("(orientation: portrait)").matches) {
+      document.getElementById('portrait').style.display = "flex";
+      document.getElementById('game_container').style.display= "none";
+   }
+  if (window.matchMedia("(orientation: landscape)").matches) {
+    document.getElementById('portrait').style.display = "none";
+      document.getElementById('game_container').style.display= "flex";
+   }
+}, false);
+
+
+
+
 window.addEventListener("keydown", (event) => {
   if (event.keyCode == "39") {
     keyboard.RIGHT = true;

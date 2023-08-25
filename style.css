@@ -151,6 +151,30 @@ canvas {
 
 }
 
+#portrait{
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  gap: 35px;
+}
+
+.header_portrait img{
+  margin-top: 25%;
+  width: 40vw;
+  height: 20vh;
+}
+
+#portrait span{
+  color: white;
+  font-size: 42px;
+  text-align: center;
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
 @font-face {
   font-family: "zabars";
   src: url("fonts/zabars.ttf") format("truetype");
@@ -159,13 +183,56 @@ canvas {
 /* Smartphones */
 
 @media only screen and (max-width: 720px){
+  .start_screen img{
+    width: 100%;
+  }
+
+  canvas{
+    width: 100%;
+  }
+
+  .endgame_screen img {
+    width: 100%;
+  }
+  .main-screen h1 {
+    display:none;
+  }
   .game_container {
     width: 100%;
   }
+
+  .controls_container{
+    display: none;
+  }  
 }
 
 @media only screen and (max-height: 480px){
+  .start_screen img{
+    width: 100%;
+    height: 100%;
+  }
+
+  canvas{
+    width: 100%;
+    height: 100%;
+  }
+
+  .endgame_screen img {
+    width: 100%;
+    height: 100%;
+  }
+  .main-screen h1 {
+    display:none;
+  }
   .game_container {
-    height: 100vh;
+    width: 100%;
+    height: 100%;
+  }
+  .controls_container{
+    display: none;
+  }  
+  .start_screen{
+    width: 100%;
+    height: 100%;
   }
 }
