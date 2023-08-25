@@ -8,6 +8,8 @@ let hurt_sound = new Audio("audio/hurt.mp3");
 let coin_sound = new Audio("audio/coin.mp3");
 let negative_sound = new Audio("audio/negative.mp3");
 let boss_music = new Audio("audio/boss_music.mp3");
+let congrats = new Audio("audio/congrats.mp3");
+let buy_audio = new Audio("audio/buy.mp3");
 
 function gameStart() {
   startLevel();
@@ -154,7 +156,7 @@ function showCloseFullscreenButton() {
   document.getElementById("open_fullscreen").style.display = "flex";
 }
 
-function gameEnd() {
+function isGameOver() {
   if (world.character.energy <= 0) {
     lostGame();
     clearAllIntervals();
@@ -169,6 +171,9 @@ function restartGame() {
 }
 
 function wonGame() {
+  if(!audio_muted){
+    congrats.play();
+  }
   resetAudio();
   let endscreen = document.getElementById("endgame");
   let endImg = document.getElementById("end_img");
@@ -208,6 +213,12 @@ function resetAudio(){
   negative_sound.pause();
   music.pause();
   boss_music.pause();
+  buy_audio.pause();
+  setTimeAudio();
+}
+
+function setTimeAudio(){
+  buy_audio.currentTime = 0;
   boss_music.currentTime = 0;
   music.currentTime = 0;
   coin_sound.currentTime = 0;

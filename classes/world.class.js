@@ -21,6 +21,7 @@ class World {
     this.run();
     this.getCoin();
     this.getBottle();
+    this.checkCollisionsInterval();
   }
 
   setWorld() {
@@ -29,11 +30,17 @@ class World {
 
   run() {
     setInterval(() => {
-      this.checkCollisions();
-      this.checkThrowObjects();
-      this.bottleCollison();
       this.buyBottle();
-      gameEnd();
+      this.checkThrowObjects();
+      isGameOver();
+    }, 180);
+  }
+
+
+  checkCollisionsInterval(){
+    setInterval(() => {
+      this.bottleCollison();
+      this.checkCollisions();
     }, 100);
   }
 
@@ -137,7 +144,7 @@ class World {
         this.character.jump();
         enemy.chickenHit();
         enemy.chickenDeathAnimation(enemy);
-      } else if (this.character.isColliding(this.boss)) {
+      } else if (this.boss.isColliding(this.character)) {
         this.character.updateCharacterHealth();
       }
     });
@@ -160,7 +167,7 @@ class World {
       this.level.enemies.forEach((enemy) => {
         if (bottle.isColliding(enemy)) {
           bottle.stopIntervals();
-          bottle.bottlePlayAnimation(bottle.IMAGES_SPLASH, 100, () => {
+          bottle.bottlePlayAnimation(bottle.IMAGES_SPLASH, 150, () => {
             bottle.bottleKillsChicken(enemy, bottle);
           });
         }
@@ -181,6 +188,9 @@ class World {
         negative_sound.play();
       }
     } else if (this.keyboard.B && this.moneyBar.coin > 0) {
+      if(!audio_muted){
+        buy_audio.play();
+      }
       this.moneyBar.subtractMoney();
       this.bottleBar.addBottle();
       this.moneyBar.setPercentage(this.moneyBar.coin);
