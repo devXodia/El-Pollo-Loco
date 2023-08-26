@@ -28,19 +28,20 @@
   </head>
   <body>
     <div class="portrait-mode" id="portrait">
-      <div class = "header_portrait">
-        <img src="img/attention.png">
+      <div class="header_portrait">
+        <img src="img/attention.png" />
       </div>
-      <span>El Pollo Loco is best played when your phone is in landscape Mode!<br>
-        <br>
-        Please turn your device. 
-        <br>
-        <br>
+      <span
+        >El Pollo Loco is best played when your phone is in landscape Mode!<br />
+        <br />
+        Please turn your device.
+        <br />
+        <br />
         Have fun with El Pollo Loco ;)
       </span>
     </div>
     <div class="main-screen" id="main">
-      <h1>El Pollo Loco</h1>
+      <h1 class="title">El Pollo Loco</h1>
       <div class="game_container" id="game_container">
         <canvas id="canvas" width="720" height="480"></canvas>
         <div class="ingame_container" id="ingame_container">
@@ -64,42 +65,68 @@
           </div>
           <div class="fullscreen_open_container" id="open_fullscreen">
             <div class="fullscreen">
-              <img class="fullscreen_img" src="img/controls/fullscreen_show.png" onclick="goFullscreen();" />
+              <img
+                class="fullscreen_img"
+                src="img/controls/fullscreen_show.png"
+                onclick="goFullscreen();"
+              />
             </div>
           </div>
           <div class="fullscreen_close_container" id="close_fullscreen">
             <div class="fullscreen_close">
-              <img class="fullscreen_close_img" src="img/controls/fullscreen_close.png" onclick="closeFullscreen();" />
+              <img
+                class="fullscreen_close_img"
+                src="img/controls/fullscreen_close.png"
+                onclick="closeFullscreen();"
+              />
             </div>
           </div>
-          
         </div>
         <div class="ingame_buttons" id="mobile_buttons">
           <div class="left-side">
-         <button id="left"><img src="img/controls/arrow_left.png"></button>
-         <button id="right"><img src="img/controls/arrow_right.png"></button>
-        </div>
-        <div class="right-side">
-         <button id="buy_btn"><img src="img/controls/b_icon.png"></button>
-         <button id="throw_btn"><img src="img/controls/d_icon.png"></button>
-         <button id="jump_btn"><img src="img/controls/spacebar.png"></button>
-        </div>
+            <button id="left"><img src="img/controls/arrow_left.png" /></button>
+            <button id="right">
+              <img src="img/controls/arrow_right.png" />
+            </button>
+          </div>
+          <div class="right-side">
+            <button id="buy_btn"><img src="img/controls/b_icon.png" /></button>
+            <button id="throw_btn">
+              <img src="img/controls/d_icon.png" />
+            </button>
+            <button id="jump_btn">
+              <img src="img/controls/spacebar.png" />
+            </button>
+          </div>
         </div>
         <div class="start_screen" id="start_screen">
-          <img src="img/9_intro_outro_screens/start/startscreen_1.png" />
-          <button class="start_game_btn" onclick="gameStart();">
-            START GAME
-          </button>
+          <img class="start_img" src="img/9_intro_outro_screens/start/startscreen_1.png"  />
+          <div class="buttons">
+            <button class="start_game_btn" onclick="gameStart();">
+              START GAME
+            </button>
+
+            <button class="controls_btn" onclick="showControls();">
+              CONTROLS
+            </button>
+          </div>
+          <div class="controlsModal" id="modal">
+            <h2>Mobile Instructions</h2>
+            <img class="cross" src="img/controls/cross.png" onclick="closeModal();">
+          </div>
         </div>
         <div class="endgame_screen" id="endgame">
-          <img id="end_img" src="img/9_intro_outro_screens/game_over/game over!.png">
+          <img
+            id="end_img"
+            src="img/9_intro_outro_screens/game_over/game over!.png"
+          />
           <span id="winMsg">YOU WIN!</span>
           <button class="end_game_btn" onclick="restartGame();">
-           RESTART GAME
+            RESTART GAME
           </button>
         </div>
       </div>
-      <div class="controls_container">
+      <div class="controls_container" id="controls">
         <div class="walk_container">
           <div class="walk">
             <img src="img/controls/arrow_left.png" />
@@ -128,7 +155,7 @@
       </div>
     </div>
     <script>
-    checkScreenSize();
+      checkScreenSize();
     </script>
   </body>
 </html>

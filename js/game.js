@@ -146,6 +146,8 @@ function enterFullscreen(element) {
   }
 }
 
+
+
 function goFullscreen() {
   let container = document.getElementById("game_container");
   showOpenFullscreenButton();
@@ -300,6 +302,20 @@ function checkScreenSize() {
     document.getElementById("game_container").style.display = "flex";
     
   }
+}
+
+function showControls(){
+  let modal = document.getElementById('modal');
+  let controls = document.getElementById('controls');
+  modal.style.display = "flex";
+  controls.style = "position: absolute; z-index: 5; bottom: 30%; display:flex; width:100%"
+}
+
+function closeModal(){
+  let modal = document.getElementById('modal');
+  let controls = document.getElementById('controls');
+  modal.style.display = "none";
+  controls.style.display = "none";
 }
 
 

@@ -16,7 +16,7 @@ body {
   height: 100vh;
 }
 
-.main-screen h1 {
+.title {
   font-size: 64px;
   letter-spacing: 3px;
   text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
@@ -40,15 +40,15 @@ canvas {
   z-index: 3;
 }
 
-.start_screen img {
+.start_img {
   z-index: 2;
   width: 720px;
   height: 480px;
 }
 
 .start_game_btn,
-.end_game_btn {
-  position: absolute;
+.end_game_btn,
+.controls_btn {
   z-index: 2;
   margin-bottom: 20px;
   font-size: 32px;
@@ -66,8 +66,20 @@ canvas {
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
 }
 
+.controls_btn {
+  display: none;
+}
+
+.buttons {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  gap: 20px;
+}
+
 .start_game_btn:hover,
-.end_game_btn:hover {
+.end_game_btn:hover,
+.controls_btn:hover {
   cursor: pointer;
   box-shadow: inset 0 0 20px rgba(215, 115, 8, 0.5),
     0 0 20px rgba(255, 255, 255, 0.2);
@@ -148,10 +160,9 @@ canvas {
   color: black;
   letter-spacing: 3px;
   text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
-
 }
 
-#portrait{
+#portrait {
   display: none;
   position: absolute;
   flex-direction: column;
@@ -162,13 +173,13 @@ canvas {
   gap: 35px;
 }
 
-.header_portrait img{
+.header_portrait img {
   margin-top: 25%;
   width: 40vw;
   height: 20vh;
 }
 
-#portrait span{
+#portrait span {
   color: white;
   font-size: 42px;
   text-align: center;
@@ -176,30 +187,52 @@ canvas {
   margin-right: 25px;
 }
 
-.ingame_buttons{
+.ingame_buttons {
   display: none;
   position: absolute;
-  bottom: 3px;
+  bottom: 5px;
   width: 100%;
   height: 44px;
   justify-content: space-between;
 }
-.left-side{
+.left-side {
   display: flex;
   gap: 20px;
   width: 30%;
 }
 
-.ingame_buttons button{
+.ingame_buttons button {
   border-style: unset;
-  background-color: transparent
+  background-color: transparent;
 }
 
-.ingame_buttons img{
+.ingame_buttons img {
   height: 43px;
   width: 43px;
 }
 
+.controlsModal {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: white;
+  z-index: 6;
+  display: none;
+  justify-content: center;
+}
+
+.controlsModal h2 {
+  font-size: 64px;
+  letter-spacing: 3px;
+}
+
+.cross {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 20px;
+  right: 40px;
+}
 
 @font-face {
   font-family: "zabars";
@@ -208,37 +241,37 @@ canvas {
 
 /* Smartphones */
 
-@media only screen and (max-width: 720px){
-  .start_screen img{
+@media only screen and (max-width: 720px) {
+  .start_img {
     width: 100%;
   }
 
-  canvas{
+  canvas {
     width: 100%;
   }
 
   .endgame_screen img {
     width: 100%;
   }
-  .main-screen h1 {
-    display:none;
+  .title {
+    display: none;
   }
   .game_container {
     width: 100%;
   }
 
-  .controls_container{
+  .controls_container {
     display: none;
-  }  
+  }
 }
 
-@media only screen and (max-height: 480px){
-  .start_screen img{
+@media only screen and (max-height: 480px) {
+  .start_img {
     width: 100%;
     height: 100%;
   }
 
-  canvas{
+  canvas {
     width: 100%;
     height: 100%;
   }
@@ -247,43 +280,46 @@ canvas {
     width: 100%;
     height: 100%;
   }
-  .main-screen h1 {
-    display:none;
+  .title {
+    display: none;
   }
   .game_container {
     width: 100%;
     height: 100%;
   }
-  .controls_container{
+  .controls_container {
     display: none;
-  }  
-  .start_screen{
+  }
+  .start_screen {
     width: 100%;
     height: 100%;
   }
 
   @media (orientation: landscape) {
     #portrait {
-        display: none !important;
+      display: none !important;
     }
     #game_container {
-        display: flex !important;
+      display: flex !important;
     }
-    #mobile_buttons{
-     display: flex; 
+    #mobile_buttons {
+      display: flex;
     }
-}
+    .controls_btn {
+      display: flex;
+    }
+  }
 
-/* Portrait orientation styles */
-@media (orientation: portrait) {
+  /* Portrait orientation styles */
+  @media (orientation: portrait) {
     #portrait {
-        display: flex !important;
+      display: flex !important;
     }
     #game_container {
-        display: none !important;
+      display: none !important;
     }
-    #mobile_buttons{
-      display: none; 
-     }
-}
+    #mobile_buttons {
+      display: none;
+    }
+  }
 }
