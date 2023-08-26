@@ -54,6 +54,7 @@ class Character extends moveableObject {
   world;
   y = 250;
   width = 125;
+  
 
   constructor() {
     super().loadImage("img/2_character_pepe/2_walk/W-21.png");
@@ -88,20 +89,17 @@ class Character extends moveableObject {
         this.jump();
         
       }
-      if (this.x >= 1980){
-        if(!audio_muted){
-          music.pause();
-          boss_music.play();
-        }
-        world.boss.bossMove();
+      
+
+      if (this.x >= 1980) { // when character sees the endboss 
+          if (!audio_muted) {
+              music.pause();
+              boss_music.play();
+          }
+          world.boss.bossChasing = true; // Boss starts chasing when character sees them
       }
-      if(world.boss.x == this.x){
-        world.boss.boss_angry = false;
-        world.boss.bossStopMoving();
-      }
-      if(world.boss.boss_angry){
-        world.boss.bossMove();
-      }
+      
+      
       
         
       this.world.camera_x = -this.x + 100;

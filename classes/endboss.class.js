@@ -2,10 +2,11 @@ class Endboss extends moveableObject {
   height = 400;
   width = 300;
   y = 60;
-  speed = 4.75;
+  speed = 25.75;
   hp = 100;
   currentX;
-  boss_angry = false;
+  
+  bossChasing = false;
 
   IMAGES_WALKING = [
     "img/4_enemie_boss_chicken/1_walk/G1.png",
@@ -57,14 +58,26 @@ class Endboss extends moveableObject {
           wonGame();
           clearAllIntervals();
         })}
-      else if(this.bossIsHurt()){
+      
+      if (this.isColliding(world.character)) { // when boss is on character
+          this.bossChasing = false; // Boss stops chasing when caught up
+          
+          this.bossStopMoving();
+          
+      }
+     
+        if(this.bossIsHurt()){
         this.newPlayAnimation(this.IMAGES_HURT, 200, () => {
         })
       }
-      else if(this.hp == 100){
+     if(this.hp == 100){
         this.newPlayAnimation(this.IMAGES_WALKING, 200, () => {})
       }
-      
+    
+    
+    if (this.bossChasing) {
+        this.bossMove();
+    }
     }, 200);
   }
 

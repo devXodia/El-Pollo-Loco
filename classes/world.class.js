@@ -10,7 +10,6 @@ class World {
   moneyBar = new Moneybar();
   bottleBar = new Bottlebar();
   ThrowableObjects = [];
-  
 
   constructor(canvas) {
     this.ctx = canvas.getContext("2d");
@@ -36,8 +35,7 @@ class World {
     }, 180);
   }
 
-
-  checkCollisionsInterval(){
+  checkCollisionsInterval() {
     setInterval(() => {
       this.bottleCollison();
       this.checkCollisions();
@@ -144,17 +142,15 @@ class World {
         this.character.jump();
         enemy.chickenHit();
         enemy.chickenDeathAnimation(enemy);
-
-      }}); 
-      if(this.character.isColliding(this.boss)){
-
-        this.boss.newPlayAnimation(this.boss.IMAGES_ATTACK, 200, () => {
-          this.boss.bossStopMoving();
-        })
-        this.character.updateCharacterHealth();
-        this.boss.bossStopMoving();
       }
-    
+    });
+    if (
+      this.character.isColliding(this.boss) ||
+      this.boss.isColliding(this.character)
+    ) {
+      this.boss.newPlayAnimation(this.boss.IMAGES_ATTACK, 200, () => {});
+      this.character.updateCharacterHealth();
+    }
   }
 
   checkThrowObjects() {
@@ -180,7 +176,7 @@ class World {
         }
       });
       if (bottle.isColliding(this.boss)) {
-        console.log("boss hp:", this.boss.hp)
+        console.log("boss hp:", this.boss.hp);
         this.boss.bossHit();
       }
     });
@@ -195,7 +191,7 @@ class World {
         negative_sound.play();
       }
     } else if (this.keyboard.B && this.moneyBar.coin > 0) {
-      if(!audio_muted){
+      if (!audio_muted) {
         buy_audio.currentTime = 0;
         buy_audio.play();
       }
