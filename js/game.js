@@ -240,6 +240,7 @@ function wonGame() {
   if (!audio_muted) {
     congrats.play();
   }
+  clearAllIntervals();
   resetAudio();
   let endscreen = document.getElementById("endgame");
   let endImg = document.getElementById("end_img");
