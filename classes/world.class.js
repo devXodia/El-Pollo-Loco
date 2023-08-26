@@ -129,19 +129,22 @@ class World {
 
   checkCollisions() {
     this.level.enemies.forEach((enemy) => {
-      if (
-        this.character.isColliding(enemy) &&
-        !this.character.isAboveGround() &&
-        enemy.hp == 100
-      ) {
-        this.character.updateCharacterHealth();
-      } else if (
-        this.character.isAboveGround() &&
-        this.character.isColliding(enemy)
-      ) {
-        this.character.jump();
-        enemy.chickenHit();
-        enemy.chickenDeathAnimation(enemy);
+      if (this.character.isColliding(enemy)) {
+        if (
+          !this.character.isAboveGround() &&
+          enemy.hp === 100
+        ){
+          this.character.updateCharacterHealth();
+          this.character.character_hit = true;
+        } else if (
+          this.character.isAboveGround()  &&
+          this.character.isColliding(enemy) &&
+          !this.character.isHurt()
+        ) {
+          this.character.jump();
+          enemy.chickenHit();
+          enemy.chickenDeathAnimation(enemy);
+        }
       }
     });
     if (
@@ -170,13 +173,17 @@ class World {
       this.level.enemies.forEach((enemy) => {
         if (bottle.isColliding(enemy)) {
           bottle.stopIntervals();
-          bottle.bottlePlayAnimation(bottle.IMAGES_SPLASH, 150, () => {
+          bottle.bottlePlayAnimation(bottle.IMAGES_SPLASH, 100, () => {
             bottle.bottleKillsChicken(enemy, bottle);
+            bottle.killBottle();
           });
         }
       });
       if (bottle.isColliding(this.boss)) {
-        console.log("boss hp:", this.boss.hp);
+        bottle.stopIntervals();
+        bottle.bottlePlayAnimation(bottle.IMAGES_SPLASH, 100, () => {
+          bottle.killBottle();
+        });
         this.boss.bossHit();
       }
     });

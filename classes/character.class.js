@@ -54,7 +54,7 @@ class Character extends moveableObject {
   world;
   y = 250;
   width = 125;
-  
+  character_hit = false;
 
   constructor() {
     super().loadImage("img/2_character_pepe/2_walk/W-21.png");
@@ -69,7 +69,9 @@ class Character extends moveableObject {
 
   animate() {
     setInterval(() => {
+      
       walking_sound.pause();
+      
       if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
         
         this.moveRight();
@@ -87,6 +89,7 @@ class Character extends moveableObject {
 
       if (this.world.keyboard.SPACE && !this.isAboveGround()) {
         this.jump();
+        setTimeout(this.y = 250, 200);
         
       }
       
