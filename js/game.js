@@ -253,6 +253,8 @@ function lostGame() {
   resetAudio();
   let endscreen = document.getElementById("endgame");
   let endImg = document.getElementById("end_img");
+  let span = document.getElementById('winMsg');
+  span.style.display = "none";
   endscreen.style.display = "flex";
   endImg.src = "img/9_intro_outro_screens/game_over/oh no you lost!.png";
 }
