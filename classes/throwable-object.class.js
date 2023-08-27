@@ -34,21 +34,15 @@ class ThrowableObject extends moveableObject {
     if (this.isThrown) {
       this.speedY = 25;
       this.applyGravityBottle();
-
-      this.throwInterval = setInterval(
-        () => {
+      this.throwInterval = setInterval(() => {
           if (this.otherDirection) {
-          
           this.x -= 10;
           } if (!this.otherDirection ) {
             this.x += 10
           }
           this.playAnimation(this.IMAGES_ROTATION);
-        },
-
-        29
-      );
-    }
+        }, 29);
+      }
   }
 
   applyGravityBottle() {
@@ -71,7 +65,6 @@ class ThrowableObject extends moveableObject {
     this.img = this.imageCache[path];
     this.currentImage++;
 
-    // Set up a timer to stop the animation after the specified duration
     const animationTimer = setTimeout(() => {
       this.stopAnimation();
       if (onComplete) {
@@ -79,13 +72,11 @@ class ThrowableObject extends moveableObject {
       }
     }, duration);
 
-    // Keep track of the timer so you can cancel it if needed
     this.animationTimer = animationTimer;
   }
 
   stopAnimation() {
     clearInterval(this.animationTimer);
-    // Reset the currentImage or perform any other necessary cleanup
   }
 
   positionBottleOnEnemy(bottle, enemy) {

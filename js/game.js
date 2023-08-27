@@ -13,64 +13,59 @@ let buy_audio = new Audio("audio/buy.mp3");
 
 function gameStart() {
   startLevel();
- activateMobileButtons();
+  activateMobileButtons();
   initWorld();
   removeStartScreen();
   moveButtons();
-  
+
   if (!audio_muted) {
     playAudio();
   }
-
 }
 
-
-function activateMobileButtons(){
-
-  document.getElementById('left').addEventListener("touchstart", (e) => {
+function activateMobileButtons() {
+  document.getElementById("left").addEventListener("touchstart", (e) => {
     e.preventDefault();
     keyboard.LEFT = true;
   });
-  document.getElementById('left').addEventListener("touchend", (e) => {
+  document.getElementById("left").addEventListener("touchend", (e) => {
     keyboard.LEFT = false;
   });
-  document.getElementById('right').addEventListener("touchstart", (e) => {
+  document.getElementById("right").addEventListener("touchstart", (e) => {
     e.preventDefault();
     keyboard.RIGHT = true;
   });
-  document.getElementById('right').addEventListener("touchend", (e) => {
+  document.getElementById("right").addEventListener("touchend", (e) => {
     e.preventDefault();
     keyboard.RIGHT = false;
   });
 
-  document.getElementById('buy_btn').addEventListener("touchstart", (e) => {
+  document.getElementById("buy_btn").addEventListener("touchstart", (e) => {
     e.preventDefault();
     keyboard.B = true;
   });
-  document.getElementById('buy_btn').addEventListener("touchend", (e) => {
+  document.getElementById("buy_btn").addEventListener("touchend", (e) => {
     e.preventDefault();
     keyboard.B = false;
   });
 
-  document.getElementById('throw_btn').addEventListener("touchstart", (e) => {
+  document.getElementById("throw_btn").addEventListener("touchstart", (e) => {
     e.preventDefault();
     keyboard.D = true;
   });
-  document.getElementById('throw_btn').addEventListener("touchend", (e) => {
+  document.getElementById("throw_btn").addEventListener("touchend", (e) => {
     e.preventDefault();
     keyboard.D = false;
   });
 
-  document.getElementById('jump_btn').addEventListener("touchstart", (e) => {
+  document.getElementById("jump_btn").addEventListener("touchstart", (e) => {
     e.preventDefault();
     keyboard.SPACE = true;
   });
-  document.getElementById('jump_btn').addEventListener("touchend", (e) => {
+  document.getElementById("jump_btn").addEventListener("touchend", (e) => {
     e.preventDefault();
     keyboard.SPACE = false;
   });
-
-
 }
 
 window.addEventListener("keydown", (event) => {
@@ -97,9 +92,6 @@ window.addEventListener("keydown", (event) => {
   }
 });
 
-
-
-
 window.addEventListener("keyup", (event) => {
   if (event.keyCode == "39") {
     keyboard.RIGHT = false;
@@ -124,29 +116,20 @@ window.addEventListener("keyup", (event) => {
   }
 });
 
-  window.addEventListener(
-    "orientationchange",
-    function () {
-      checkScreenSize();
-      location.reload();
+window.addEventListener("orientationchange", function () {
+  checkScreenSize();
+  location.reload();
 });
-
-
-
 
 function enterFullscreen(element) {
   if (element.requestFullscreen) {
     element.requestFullscreen();
   } else if (element.msRequestFullscreen) {
-    // for IE11 (remove June 15, 2022)
     element.msRequestFullscreen();
   } else if (element.webkitRequestFullscreen) {
-    // iOS Safari
     element.webkitRequestFullscreen();
   }
 }
-
-
 
 function goFullscreen() {
   let container = document.getElementById("game_container");
@@ -254,7 +237,7 @@ function lostGame() {
   resetAudio();
   let endscreen = document.getElementById("endgame");
   let endImg = document.getElementById("end_img");
-  let span = document.getElementById('winMsg');
+  let span = document.getElementById("winMsg");
   span.style.display = "none";
   endscreen.style.display = "flex";
   endImg.src = "img/9_intro_outro_screens/game_over/oh no you lost!.png";
@@ -303,23 +286,20 @@ function checkScreenSize() {
   } else if (screen.availHeight < screen.availWidth) {
     document.getElementById("portrait").style.display = "none";
     document.getElementById("game_container").style.display = "flex";
-    
   }
 }
 
-function showControls(){
-  let modal = document.getElementById('modal');
-  let controls = document.getElementById('controls');
+function showControls() {
+  let modal = document.getElementById("modal");
+  let controls = document.getElementById("controls");
   modal.style.display = "flex";
-  controls.style = "position: absolute; z-index: 5; bottom: 30%; display:flex; width:100%"
+  controls.style =
+    "position: absolute; z-index: 5; bottom: 30%; display:flex; width:100%";
 }
 
-function closeModal(){
-  let modal = document.getElementById('modal');
-  let controls = document.getElementById('controls');
+function closeModal() {
+  let modal = document.getElementById("modal");
+  let controls = document.getElementById("controls");
   modal.style.display = "none";
   controls.style.display = "none";
 }
-
-
-

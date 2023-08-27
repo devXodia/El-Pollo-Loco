@@ -69,85 +69,81 @@ class Character extends moveableObject {
 
   animate() {
     setInterval(() => {
-      
-      walking_sound.pause();
-      
-      if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
-        this.moveRightCharacter();
-        
-      }
-
-      if (this.world.keyboard.LEFT && this.x > 0) {
-        this.moveLeftCharacter();
-        
-      }
-
-      if (this.world.keyboard.SPACE && !this.isAboveGround()) {
-        this.jump();
-        
-      }
-      
-
-      if (this.x >= 1980) { // when character sees the endboss 
-          if (!audio_muted) {
-              music.pause();
-              boss_music.play();
-          }
-          world.boss.bossChasing = true; // Boss starts chasing when character sees them
-      }
-      
-      
-      
-      
-      this.world.camera_x = -this.x + 100;
+      this.checkKeyboard();
     }, 1000 / 60);
 
-    setInterval(
-      () => {
-        if (this.isDead()) {
-          this.playAnimation(this.IMAGES_DEAD);
-        } else if (this.isHurt()) {
-          this.playAnimation(this.IMAGES_HURT);
-        } else if (this.isAboveGround()) {
-          this.playAnimation(this.IMAGES_JUMPING);
-        } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-          this.playAnimation(this.IMAGES_WALKING);
-        } else if (
-          !this.world.keyboard.RIGHT &&
-          !this.world.keyboard.LEFT &&
-          !this.world.keyboard.UP &&
-          !this.world.keyboard.D
-        ) {
-          this.playAnimation(this.IMAGES_IDLE);
-          this.adjustY();
-        }
-      },
-
-      150
-    );
+    this.charachterAnimation();
   }
 
   jumpCollision(enemy) {
     return this.isColliding(enemy) && this.isAboveGround();
-    }
+  }
 
-
-
-  moveRightCharacter(){
+  moveRightCharacter() {
     this.moveRight();
-        if (!audio_muted) {
-          walking_sound.play();
-        }
-  }
-  
-  moveLeftCharacter(){
-    this.moveLeft();
-        if (!audio_muted) {
-          walking_sound.play();
-        }
+    if (!audio_muted) {
+      walking_sound.play();
+    }
   }
 
-  adjustY(){
+  moveLeftCharacter() {
+    this.moveLeft();
+    if (!audio_muted) {
+      walking_sound.play();
+    }
+  }
+
+  adjustY() {
     this.y = 250;
   }
+
+  charachterAnimation() {
+    setInterval(() => {
+      if (this.isDead()) {
+        this.playAnimation(this.IMAGES_DEAD);
+      } else if (this.isHurt()) {
+        this.playAnimation(this.IMAGES_HURT);
+      } else if (this.isAboveGround()) {
+        this.playAnimation(this.IMAGES_JUMPING);
+      } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+        this.playAnimation(this.IMAGES_WALKING);
+      } else if (
+        !this.world.keyboard.RIGHT &&
+        !this.world.keyboard.LEFT &&
+        !this.world.keyboard.UP &&
+        !this.world.keyboard.D
+      ) {
+        this.playAnimation(this.IMAGES_IDLE);
+        this.adjustY();
+      }
+    }, 150);
   }
+
+ 
+
+  checkKeyboard(){
+    walking_sound.pause();
+      if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
+        this.moveRightCharacter();
+      }
+      if (this.world.keyboard.LEFT && this.x > 0) {
+        this.moveLeftCharacter();
+      }
+      if (this.world.keyboard.SPACE && !this.isAboveGround()) {
+        this.jump();
+      }
+      if (this.x >= 1980) {
+        if (!audio_muted) {
+          this.playBossMusic();
+        }
+        world.boss.bossChasing = true; // Boss starts chasing when character sees them
+      }
+      this.world.camera_x = -this.x + 100;
+  }
+
+  
+  playBossMusic() {
+    music.pause();
+    boss_music.play();
+  }
+}

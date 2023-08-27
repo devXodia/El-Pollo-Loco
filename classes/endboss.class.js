@@ -49,40 +49,26 @@ class Endboss extends moveableObject {
   }
 
   animate() {
-    
     let bossAnimation = setInterval(() => {
       if(this.bossIsDead()){
-        
-        this.newPlayAnimation(this.IMAGES_DEAD, 230, () => {
-          this.bossStopMoving();
-          this.loadImage(this.IMAGES_DEAD[2]);
-          wonGame();
+        this.bossDeathAnimation();
         }
-        )
-        
-      }
-      
-      if (this.isColliding(world.character)) { // when boss is on character
-          this.bossChasing = false; // Boss stops chasing when caught up
-          
+      if (this.isColliding(world.character)) {
+          this.bossChasing = false;
           this.bossStopMoving();
-          
       }
-     
         if(this.bossIsHurt() && !this.bossIsDead()){
         this.newPlayAnimation(this.IMAGES_HURT, 200, () => {
-        })
-      }
+        })}
      if(this.hp == 100){
         this.newPlayAnimation(this.IMAGES_WALKING, 200, () => {})
       }
-    
-    
     if (this.bossChasing) {
         this.bossMove();
-    }
-    }, 200);
+      }}, 200);
   }
+
+
 
   bossStopMoving() {
     this.x = this.currentX;
@@ -104,5 +90,13 @@ class Endboss extends moveableObject {
 
   bossHit(){
     this.hp -= 8;
+  }
+
+  bossDeathAnimation(){
+    this.newPlayAnimation(this.IMAGES_DEAD, 230, () => {
+      this.bossStopMoving();
+      this.loadImage(this.IMAGES_DEAD[2]);
+      wonGame();
+    })
   }
 }
