@@ -136,12 +136,7 @@ class Character extends moveableObject {
         this.playAnimation(this.IMAGES_JUMPING);
       } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
         this.playAnimation(this.IMAGES_WALKING);
-      } else if (
-        !this.world.keyboard.RIGHT &&
-        !this.world.keyboard.LEFT &&
-        !this.world.keyboard.UP &&
-        !this.world.keyboard.D
-      ) {
+      } else if (!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT && !this.world.keyboard.UP && !this.world.keyboard.D) {
         this.playAnimation(this.IMAGES_IDLE);
         this.adjustY();
       }

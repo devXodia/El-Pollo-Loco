@@ -238,6 +238,21 @@ canvas {
   right: 40px;
 }
 
+footer{
+  display: flex;
+  position: absolute;
+  bottom: 5px;
+  align-self: center;
+  justify-content: center;
+}
+
+footer a{
+  text-decoration: none;
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
+}
+
 @font-face {
   font-family: "zabars";
   src: url("fonts/zabars.ttf") format("truetype");
@@ -265,6 +280,10 @@ canvas {
   }
 
   .controls_container {
+    display: none;
+  }
+
+  footer{
     display: none;
   }
 }
@@ -299,6 +318,10 @@ canvas {
     height: 100%;
   }
 
+  footer{
+    display: none;
+  }
+
   @media (orientation: landscape) {
     #portrait {
       display: none !important;
@@ -312,6 +335,10 @@ canvas {
     .controls_btn {
       display: flex;
     }
+
+    footer{
+      display: none;
+    }
   }
 
   /* Portrait orientation styles */
@@ -323,6 +350,10 @@ canvas {
       display: none !important;
     }
     #mobile_buttons {
+      display: none;
+    }
+
+    footer{
       display: none;
     }
   }

@@ -68,13 +68,12 @@ class Endboss extends moveableObject {
           this.bossChasing = false;
           this.bossStopMoving();
       }
-        if(this.bossIsHurt() && !this.bossIsDead()){
-        this.newPlayAnimation(this.IMAGES_HURT, 200, () => {
-        })}
-     if(this.hp == 100){
+      if(this.bossIsHurt() && !this.bossIsDead()){
+        this.newPlayAnimation(this.IMAGES_HURT, 200, () => {})}
+      if(this.hp == 100){
         this.newPlayAnimation(this.IMAGES_WALKING, 200, () => {})
       }
-    if (this.bossChasing) {
+      if (this.bossChasing) {
         this.bossMove();
       }}, 200);
   }

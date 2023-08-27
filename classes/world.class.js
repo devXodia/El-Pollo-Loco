@@ -163,17 +163,9 @@ class World {
       if (this.character.isColliding(enemy)) {
         if (!this.character.isAboveGround() && enemy.hp === 100) {
           this.character.updateCharacterHealth();
-        } else if (
-          this.character.isAboveGround() &&
-          this.character.isColliding(enemy) &&
-          !this.character.isHurt()
-        ) {
-          this.character.jump();
-          enemy.chickenHit();
-          enemy.chickenDeathAnimation(enemy);
-        }
-      }
-    });
+        } else if (this.character.isAboveGround() && this.character.isColliding(enemy) && !this.character.isHurt()){
+          this.killChickenWithJump(enemy);
+        }}});
     if (this.bossCollision()) {
       this.boss.newPlayAnimation(this.boss.IMAGES_ATTACK, 200, () => {});
       this.character.updateCharacterHealth();
@@ -335,5 +327,15 @@ class World {
    */
   drawEnemies(){
     this.addObjectsToMap(this.level.enemies);
+  }
+
+  /**
+   * This function kills the given Chicken.
+   * @param {object} enemy - Currently given Chicken Object 
+   */
+  killChickenWithJump(enemy){
+    this.character.jump();
+    enemy.chickenHit();
+    enemy.chickenDeathAnimation(enemy);
   }
 }
