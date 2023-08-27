@@ -55,6 +55,7 @@ class Endboss extends moveableObject {
         
         this.newPlayAnimation(this.IMAGES_DEAD, 230, () => {
           this.bossStopMoving();
+          this.loadImage(this.IMAGES_DEAD[2]);
           wonGame();
         }
         )

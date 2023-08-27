@@ -78,6 +78,7 @@ class moveableObject extends DrawableObject {
   jump() {
     this.speedY = 21;
     
+    
   }
 
   updateCharacterHealth() {

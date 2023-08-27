@@ -135,7 +135,6 @@ class World {
           enemy.hp === 100
         ){
           this.character.updateCharacterHealth();
-          this.character.character_hit = true;
         } else if (
           this.character.isAboveGround()  &&
           this.character.isColliding(enemy) &&
@@ -154,6 +153,7 @@ class World {
       this.boss.newPlayAnimation(this.boss.IMAGES_ATTACK, 200, () => {});
       this.character.updateCharacterHealth();
     }
+    
   }
 
   checkThrowObjects() {
