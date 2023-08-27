@@ -381,6 +381,7 @@ function checkScreenSize() {
 function showControls() {
   let modal = document.getElementById("modal");
   let controls = document.getElementById("controls");
+  changeButtonsToMobile();
   modal.style.display = "flex";
   controls.style =
     "position: absolute; z-index: 5; bottom: 30%; display:flex; width:100%";
@@ -394,4 +395,16 @@ function closeModal() {
   let controls = document.getElementById("controls");
   modal.style.display = "none";
   controls.style.display = "none";
+}
+
+/**
+ * This function changes the buttons in mobile version.
+ */
+function changeButtonsToMobile(){
+  let buy_mobile = document.getElementById("buy_img");
+  let throw_mobile = document.getElementById("throw");
+  let jump_mobile = document.getElementById("jump");
+  buy_mobile.src = "img/controls/buy_mobile.png";
+  throw_mobile.src = "img/controls/throw_mobile.png";
+  jump_mobile.src = "img/controls/jump_mobile.png";
 }
