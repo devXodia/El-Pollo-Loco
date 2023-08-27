@@ -3,6 +3,14 @@ class Coin extends BackgroundObject {
 
   x = 200;
 
+   /**
+  * 
+  * The Constructor first loads the Image of the Coin to be shown first. 
+  * Sets up height, width, x and y position of the Coin.
+  * After that the function adds a random number to the y position of every new Coin and 200 to the x position of every new Coin.
+  * And then all the images are created with the given array of images and ready for animation. 
+  * 
+  */
   constructor() {
     super().loadImage("img/8_coin/coin_1.png");
     this.height = 80;
@@ -14,6 +22,9 @@ class Coin extends BackgroundObject {
     this.animate();
   }
 
+  /**
+   * This Function animates the Coins.
+   */
   animate() {
     setInterval(() => {
       this.playAnimation(this.IMAGES_COINS);

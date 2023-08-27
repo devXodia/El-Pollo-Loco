@@ -9,6 +9,14 @@ class Statusbar extends DrawableObject {
   ];
   perecentage = 100;
 
+  /**
+   *
+   * The Constructor first loads the parent class.
+   * Creates all The Images needed for the Statusbar.
+   * After that the function sets the Base Percentage of the Statusbar to be shown
+   * and sets the x, y position of the Statusbar and height and width.
+   *
+   */
   constructor() {
     super();
     this.loadImages(this.IMAGES);
@@ -19,12 +27,20 @@ class Statusbar extends DrawableObject {
     this.height = 60;
   }
 
+  /**
+   * This function is used to show the Statusbar Image corresponding with the current HP, Money or available bottles.
+   * @param {number} percentage - Percentage to be shown of the Statusbar 
+   */
   setPercentage(percentage) {
     this.percentage = percentage;
     let path = this.IMAGES[this.resolveImageIndex()];
     this.img = this.imageCache[path];
   }
 
+  /**
+   * This function returns which index of the array should be shown for the current amount of hp, money and bottles on Statusbar.
+   * @returns reutrns index for the needed image corresponding with the current amount of hp, money or bottles.
+   */
   resolveImageIndex() {
     if (this.percentage == 100) {
       return 5;

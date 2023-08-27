@@ -38,6 +38,14 @@ class Endboss extends moveableObject {
     "img/4_enemie_boss_chicken/5_dead/G26.png",
   ];
 
+  /**
+   *
+   * The Constructor first loads the parent class and the first image to be shown.
+   * Creates all The Images needed for the different States of the endboss.
+   * After that the function sets the x position of the endboss to be at the end of the map
+   * and starts the Animations.
+   *
+   */
   constructor() {
     super().loadImage(this.IMAGES_WALKING[1]);
     this.loadImages(this.IMAGES_WALKING);
@@ -48,6 +56,9 @@ class Endboss extends moveableObject {
     this.animate();
   }
 
+  /**
+   * This function is animating the endboss
+   */
   animate() {
     let bossAnimation = setInterval(() => {
       if(this.bossIsDead()){
@@ -69,29 +80,48 @@ class Endboss extends moveableObject {
   }
 
 
-
+  /**
+   * This function stops the boss movement.
+   */
   bossStopMoving() {
     this.x = this.currentX;
   }
 
+  /**
+   * This function moves the boss.
+   */
   bossMove() {
     this.moveLeft();
     this.otherDirection = false;
     this.currentX = this.x;
   }
 
+  /**
+   * 
+   * @returns - returns if the Boss is currently hurt or not.
+   */
   bossIsHurt() {
     return this.hp < 100;
   }
 
+  /**
+   * 
+   * @returns returns if the Boss is currently dead or not.
+   */
   bossIsDead() {
     return this.hp <= 0;
   }
 
+  /**
+   * This function subtracts hp of the boss.
+   */
   bossHit(){
     this.hp -= 8;
   }
 
+  /**
+   * This function is showing the death animation of the boss.
+   */
   bossDeathAnimation(){
     this.newPlayAnimation(this.IMAGES_DEAD, 230, () => {
       this.bossStopMoving();

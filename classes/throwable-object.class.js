@@ -18,6 +18,16 @@ class ThrowableObject extends moveableObject {
     "img/6_salsa_bottle/bottle_rotation/bottle_splash/6_bottle_splash.png",
   ];
 
+  /**
+   * This constructor loades the Parent Class and loads the first Image.
+   * After that it sets the throwable bottle x and y position to the ones of the character.
+   * Then it sets the height of the Bottle.
+   * The Direction of the Bottle throw is being set to the characters currently looked at direction.
+   * And after that it calls the Throw function
+   * 
+   * @param {number} x - x position of character
+   * @param {number} y - y position of character
+   */
   constructor(x, y) {
     super().loadImage("img/6_salsa_bottle/salsa_bottle.png");
     this.loadImages(this.IMAGES_ROTATION);
@@ -30,6 +40,9 @@ class ThrowableObject extends moveableObject {
     this.throw();
   }
 
+  /**
+   * This function is used to animate the bottle throw.
+   */
   throw() {
     if (this.isThrown) {
       this.speedY = 25;
@@ -44,7 +57,10 @@ class ThrowableObject extends moveableObject {
         }, 29);
       }
   }
-
+  
+  /**
+   * This function applys gravity to the Bottle.
+   */
   applyGravityBottle() {
     if (this.isThrown) {
       this.gravityInterval = setInterval(() => {
@@ -54,11 +70,20 @@ class ThrowableObject extends moveableObject {
     }
   }
 
+  /**
+   * this function is used to stop the bottle Throw animation.
+   */
   stopIntervals() {
     clearInterval(this.throwInterval);
     clearInterval(this.gravityInterval);
   }
 
+  /**
+   * This function is used to play the Bottle Spinning Animation for needed specific duration
+   * @param {Array} images - Array of Images 
+   * @param {number} duration - Animation duration
+   * @param {Function} onComplete - Call back function
+   */
   bottlePlayAnimation(images, duration, onComplete) {
     let i = this.currentImage % images.length;
     let path = images[i];
@@ -75,15 +100,26 @@ class ThrowableObject extends moveableObject {
     this.animationTimer = animationTimer;
   }
 
+  /**
+   * This function stops the Animation of the bottle spin.
+   */
   stopAnimation() {
     clearInterval(this.animationTimer);
   }
 
+  /**
+   * This function positions the bottle on the chicken
+   * @param {Object} bottle - Current bottle object
+   * @param {Object} enemy - Current chicken object
+   */
   positionBottleOnEnemy(bottle, enemy) {
     bottle.x = enemy.x + (enemy.width - bottle.width) / 2;
     bottle.y = enemy.y + (enemy.height - bottle.height) / 2;
   }
 
+  /**
+   * this function is used for removing the Bottle Object out of the Array.
+   */
   killBottle() {
     world.ThrowableObjects.splice(0, 1);
   }

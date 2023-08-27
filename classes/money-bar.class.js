@@ -11,6 +11,14 @@ class Moneybar extends Statusbar {
         "img/7_statusbars/1_statusbar/1_statusbar_coin/blue/100.png"
     ];
 
+    /**
+   *
+   * The Constructor first loads the parent class.
+   * Creates all The Images needed for the money Statusbar.
+   * After that the function sets the Base Percentage of the Statusbar to be shown
+   * and sets the y position of the Statusbar.
+   *
+   */
     constructor(){
         super();
         this.loadImages(this.IMAGES_MONEY);
@@ -20,6 +28,9 @@ class Moneybar extends Statusbar {
 
     }
 
+    /**
+     * This function adds Money to the User and makes sure it doesn't exceed more then 100. 
+     */
     addMoney(){
         this.coin += 20;
         if(this.coin > 100){
@@ -27,6 +38,9 @@ class Moneybar extends Statusbar {
         }
       }
     
+      /**
+       * This function subtracts Money from the User.
+       */
     subtractMoney(){
         this.coin -= 20;
         if(this.coin < 0){

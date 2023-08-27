@@ -6,6 +6,10 @@ class moveableObject extends DrawableObject {
   energy = 100;
   lastHit = 0;
 
+
+  /**
+   * This function applys gravity to the Character.
+   */
   applyGravity() {
     setInterval(() => {
       if (this.isAboveGround() || this.speedY > 0) this.y -= this.speedY;
@@ -13,8 +17,12 @@ class moveableObject extends DrawableObject {
     }, 1000 / 25);
   }
 
+
+  /**
+   * 
+   * @returns returns if the Character is currently above the Ground or not and excludes the Bottle Objects.
+   */
   isAboveGround() {
-     
     if (this instanceof ThrowableObject) {
       // Throwable Object should always fall
       return true;
@@ -25,6 +33,11 @@ class moveableObject extends DrawableObject {
     
   }
 
+  /**
+   * 
+   * @param {Object} mo - Currently given moveable object 
+   * @returns returns if the given Object is colliding with the object the function is called from.
+   */
   isColliding(mo) {
     return (
       this.x + this.width > mo.x &&
@@ -34,6 +47,9 @@ class moveableObject extends DrawableObject {
     );
   }
 
+  /**
+   * This function is subtracting hp from the Character and saving the time when the character was last hit.
+   */
   hit() {
     this.energy -= 5;
     if (this.energy < 0) {
@@ -43,31 +59,44 @@ class moveableObject extends DrawableObject {
     }
   }
 
+  /**
+   * 
+   * @returns returns if the last time since the character was hit is less then a second ago
+   */
   isHurt() {
     let timepassed = new Date().getTime() - this.lastHit; // Difference in ms
     timepassed = timepassed / 1000; // Difference in s
     return timepassed < 1;
   }
 
+  /**
+   * 
+   * @returns returns if the Character is Dead or not
+   */
   isDead() {
     return this.energy == 0;
   }
 
   /**
-   *
-   * @param {Array} arr - [Image Sources]
+   * this function makes the given object move to the right.
    */
-
   moveRight() {
     this.x += this.speed;
     this.otherDirection = false;
   }
 
+  /**
+   * this function makes the given object move to the left.
+   */
   moveLeft() {
     this.x -= this.speed;
     this.otherDirection = true;
   }
 
+  /**
+   * This function is displaying every Image in given Array and is creating a animation effect.
+   * @param {Array} images - given array with image paths 
+   */
   playAnimation(images) {
     let i = this.currentImage % images.length;
     let path = images[i];
@@ -75,12 +104,16 @@ class moveableObject extends DrawableObject {
     this.currentImage++;
   }
 
+  /**
+   * This function is used for the given object to jump.
+   */
   jump() {
     this.speedY = 21;
-    
-    
   }
 
+  /**
+   * This function is used to update the Health of the Character and playing a hurt sound if the Audio is not muted.
+   */
   updateCharacterHealth() {
     this.hit();
     if (!audio_muted) {
@@ -89,6 +122,12 @@ class moveableObject extends DrawableObject {
     this.world.statusBar.setPercentage(this.energy);
   }
 
+  /**
+   * This function is used to kill the chicken with a bottle.
+   * 
+   * @param {Object} enemy - Currently given enemy chicken
+   * @param {Object} bottle  Currently given bottle
+   */
   bottleKillsChicken(enemy, bottle) {
     enemy.chickenHit();
     bottle.positionBottleOnEnemy(bottle, enemy);
@@ -96,6 +135,13 @@ class moveableObject extends DrawableObject {
     bottle.killBottle();
   }
 
+  /**
+   * this function is also creating a animation but used in specific cases for speciifc animation durations
+   * 
+   * @param {Array} images - Array with Image paths
+   * @param {number} duration - given duration of the Animation
+   * @param {Function} onComplete - callback Function after the Animation is played
+   */
   newPlayAnimation(images, duration, onComplete) {
     let i = this.currentImage % images.length;
     let path = images[i];

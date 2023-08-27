@@ -11,6 +11,16 @@ class Chicken extends moveableObject {
   
   hp = 100;
 
+  /**
+   *
+   * The Constructor first loads parent class.
+   * Sets up the position, height and width of the character. 
+   * After that the function makes sure that every new Chicken is being created at a random x position from 150 upwards
+   * Creates all The Images needed for the different States of the Chicken.
+   * After that every Chicken gets its unique traveling speed
+   * and starts the animations for the Chicken.
+   *
+   */
   constructor() {
     super().loadImage("../img/3_enemies_chicken/chicken_normal/1_walk/1_w.png");
     this.height = 50;
@@ -24,6 +34,9 @@ class Chicken extends moveableObject {
     this.animate();
   }
 
+  /**
+   * This function is used for Animations of the Chicken.
+   */
   animate() {
     setInterval(() => {
       if(this.hp === 100){
@@ -39,10 +52,18 @@ class Chicken extends moveableObject {
   }, 200);
   }
 
+  /**
+   * This function is used to remove the HP of the chicken.
+   */
   chickenHit(){
     this.hp -= 100;
   }
 
+  /**
+   * This function is used to play the Death Animation on the currently given enemy chicken.
+   * 
+   * @param {string} enemy - Currently given Enemy Chicken
+   */
   chickenDeathAnimation(enemy){
     this.newPlayAnimation(this.IMAGE_DEAD, 100, () => {
       level1.enemies.splice(world.getIndex(enemy), 1)

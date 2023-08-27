@@ -1,5 +1,8 @@
 let level1;
 
+/**
+ * This function is used create several objects for the level 1
+ */
 function startLevel(){
   level1 = new Level(
     [
