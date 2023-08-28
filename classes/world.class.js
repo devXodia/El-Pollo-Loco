@@ -27,6 +27,7 @@ class World {
     this.getCoin();
     this.getBottle();
     this.checkCollisionsInterval();
+    this.checkBottleCollisionsInterval();
   }
 
   /**
@@ -48,16 +49,23 @@ class World {
   }
 
   /**
-   * This function is used to check if the bottle is Colliding with the enemy chicken and if the character is colliding 
+   * This function is used to check if the character is colliding 
    * with chicken or endboss.
    */
   checkCollisionsInterval() {
     setInterval(() => {
-      this.bottleCollison();
       this.checkCollisions();
     }, 100);
   }
 
+   /**
+   * This function is used to check if the bottle is Colliding with the enemy chicken or boss.
+   */
+  checkBottleCollisionsInterval(){
+    setInterval(() => {
+      this.bottleCollison();
+    }, 150);
+  }
   /**
    * this function is used to add money to the user if the user picks up the coins in the world.
    */
@@ -277,7 +285,7 @@ class World {
    */
   bottleAnimationsOnBoss(bottle) {
     bottle.stopIntervals();
-    bottle.bottlePlayAnimation(bottle.IMAGES_SPLASH, 100, () => {
+    bottle.bottlePlayAnimation(bottle.IMAGES_SPLASH, 150, () => {
       bottle.killBottle();
     });
   }

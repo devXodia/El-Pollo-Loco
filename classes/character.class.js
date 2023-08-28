@@ -81,6 +81,7 @@ class Character extends moveableObject {
   animate() {
     setInterval(() => {
       this.checkKeyboard();
+      
     }, 1000 / 60);
 
     this.charachterAnimation();
@@ -115,12 +116,6 @@ class Character extends moveableObject {
     }
   }
 
-  /**
-   * This Function Adjusts the Y Positon of the Character. 
-   */
-  adjustY() {
-    this.y = 250;
-  }
 
 
   /**
@@ -138,7 +133,7 @@ class Character extends moveableObject {
         this.playAnimation(this.IMAGES_WALKING);
       } else if (!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT && !this.world.keyboard.UP && !this.world.keyboard.D) {
         this.playAnimation(this.IMAGES_IDLE);
-        this.adjustY();
+      
       }
     }, 150);
   }
